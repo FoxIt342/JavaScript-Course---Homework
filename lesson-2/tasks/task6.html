@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 2 - Task 6</title>
+</head>
+
+<body>
+   <h1>Задача 6</h1>
+
+   <p>З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару окремо та
+      загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.</p>
+
+   <script>
+      //Вводимо аргументи
+      const item1Price = parseFloat(prompt('Введіть вартість товару 1', '0'))
+      const item1Quantity = parseInt(prompt('Введіть кількість товару 1', '0'))
+      const item2Price = parseFloat(prompt('Введіть вартість товару 2', '0'))
+      const item2Quantity = parseInt(prompt('Введіть кількість товару 2', '0'))
+      const item3Price = parseFloat(prompt('Введіть вартість товару 3', '0'))
+      const item3Quantity = parseInt(prompt('Введіть кількість товару 3', '0'))
+
+      //Обчислюємо
+      const item1TotalPrice = item1Price * item1Quantity
+      const item2TotalPrice = item2Price * item2Quantity
+      const item3TotalPrice = item3Price * item3Quantity
+      const totalSum = item1TotalPrice + item2TotalPrice + item3TotalPrice
+
+      //Виводимо результати
+      document.write(`
+         <table border="2px">
+            <tr>
+               <th>Item</th>
+               <th>Price</th>
+               <th>Quantity</th>
+               <th>Total Price</th>
+            </tr>
+            <tr>
+               <th>Item1</th>
+               <th>${item1Price}</th>
+               <th>${item1Quantity}</th>
+               <th>${item1TotalPrice.toFixed(2)}</th>
+            </tr>
+            <tr>
+               <th>Item2</th>
+               <th>${item2Price}</th>
+               <th>${item2Quantity}</th>
+               <th>${item2TotalPrice.toFixed(2)}</th>
+            </tr>
+            <tr>
+               <th>Item3</th>
+               <th>${item3Price}</th>
+               <th>${item3Quantity}</th>
+               <th>${item3TotalPrice.toFixed(2)}</th>
+            </tr>
+            <tr>
+               <th></th>
+               <th></th>
+               <th>Total:</th>
+               <th>${totalSum.toFixed(2)}</th>
+            </tr>
+         </table>
+      `)
+   </script>
+</body>
+
+</html>

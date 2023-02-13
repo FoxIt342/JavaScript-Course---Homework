@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 2 - Task 0</title>
+</head>
+
+<body>
+   <h1>Задача 0</h1>
+
+   <p>Обчислити значення виразів.</p>
+   <img src="../img/formulae.jpg" alt="Formulae">
+
+   <script>
+      //Вводимо аргументи
+      const a = parseFloat(prompt('Введіть число', '0'))
+      const b = parseFloat(prompt('Введіть число', '0'))
+      const c = parseFloat(prompt('Введіть число', '0'))
+
+      //Обчислюємо
+      const S1 = (a + 12 + b)
+      const S2 = Math.sqrt((a + b) / (2 * a))
+      const S3 = Math.cbrt((a + b) * c)
+      const S4 = Math.sin(a / (-b))
+
+      //Виводимо результат
+      document.write(`
+         <div>
+            Результат виразу 1: ${S1.toFixed(2)}<br>
+            Результат виразу 2: ${S2.toFixed(2)}<br>
+            Результат виразу 3: ${S3.toFixed(2)}<br>
+            Результат виразу 4: ${S4.toFixed(2)}
+         </div>
+      `)
+   </script>
+</body>
+
+</html>

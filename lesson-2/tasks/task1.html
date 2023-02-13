@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson 2 - Task 1</title>
+</head>
+
+<body>
+   <h1>Задача 1</h1>
+
+   <p>Знайти суму, добуток та частку двох дійсних чисел. Результат вивести у формі таблиці</p>
+
+   <script>
+      //Вводимо необхідні дані
+      const x = parseFloat(prompt('Введіть дійсне число', '0'))
+      const y = parseFloat(prompt('Введіть дійсне число', '0'))
+
+      //Знаходимо результат
+      const resultAdd = x + y
+      const resultMultiply = x * y
+      const resultDivide = x / y
+
+      //Виводимо результат
+      document.write(`
+      <table border="2px">
+         <tr>
+            <th>Сума чисел</th>
+            <th>${resultAdd.toFixed(2)}</th>
+         </tr>
+         <tr>
+            <th>Добуток чисел</th>
+            <th>${resultMultiply.toFixed(2)}</th>
+         </tr>
+         <tr>
+            <th>Ділення чисел</th>
+            <th>${resultDivide.toFixed(2)}</th>
+         </tr>
+      </table>
+      `)
+   </script>
+</body>
+
+</html>
