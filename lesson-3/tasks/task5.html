@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <h1>Задача 5</h1>
+   <p>З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести
+      на екран назву транспортного засобу, яким він може керувати.</p>
+
+   <script>
+      //Аргументи
+      const userCateg = prompt('Введіть назву категорії вашого посвідчення водія')
+
+      //Обчислення
+      if (userCateg === 'A' || userCateg === 'a')
+         console.log('Ви можете керувати мотоциклом')
+      else if (userCateg === 'B' || userCateg === 'b')
+         console.log('Ви можете керувати легковим автомобілем')
+      else if (userCateg === 'C' || userCateg === 'c')
+         console.log('Ви можете керувати вантажним автомобілем')
+      else
+         console.log('Такої категорії не існує. Перевірте введені дані')
+   </script>
+</body>
+
+</html>
