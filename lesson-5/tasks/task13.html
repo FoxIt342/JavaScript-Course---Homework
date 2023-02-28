@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 13</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 13</h1>
+      <p>Морський бій. Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M. Маючи К снарядів,
+         користувач намагається потопити корабель.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         // користувач вводить N 
+         // користувач вводить M 
+         // користувач вводить K 
+         // комп ютер рандомно вибирає x 
+         // комп ютер рандомно вибирає y 
+         // користувач вводить значення x 
+         // користувач вводить значення y
+         const sizeAxisX = parseInt(prompt('Введіть розмір поля по осі X'))
+         const sizeAxisY = parseInt(prompt('Введіть розмір поля по осі Y'))
+         const shellQuantity = parseInt(prompt('Введіть кількість снарядів'))
+         const shipPositionX = Math.floor(Math.random() * (sizeAxisX) + 1)
+         const shipPositionY = Math.floor(Math.random() * (sizeAxisY) + 1)
+         for (let i = 0; i < shellQuantity; i++) {
+            let userShipX = parseInt(prompt(`Введіть позицію корабля по осі X (від 1 до ${sizeAxisX})`))
+            let userShipY = parseInt(prompt(`Введіть позицію корабля по осі Y (від 1 до ${sizeAxisY})`))
+            if ((userShipX === shipPositionX) && (userShipY === shipPositionY)) {
+               result = `Вітаємо, ви знищили ворожий корабель!`
+               break
+            } else {
+               result = `На жаль, ви не влучили у ворожий корабель. Його розташування: X=${shipPositionX}, Y=${shipPositionY}`
+            }
+         }
+         document.write(result)
+      </script>
+   </div>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 12</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 12</h1>
+      <p>Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у кожній позиції вибирається як одне з
+         чотирьох зображень. Вивести ці зображення і повідомити виграш користувача (три перших зображення 100 грн, три
+         других – 200, три третіх – 500, три четвертих зображення – 1000грн). Використати цикли і switch (для вибору
+         зображення за номером).
+      </p>
+      <img src="../img/task12.png" alt="Task 12">
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         // cherries = 1
+         // apple = 2
+         // pineapple = 3
+         // plum = 4
+         const minValue = 1
+         const maxValue = 4
+         let randomNumber
+         let randomImage
+         let caseCounter1 = 0, caseCounter2 = 0, caseCounter3 = 0, caseCounter4 = 0
+         for (let i = 0; i < 3; i++) {
+            const randomImage = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+            switch (randomImage) {
+               case 1: document.write(`<img class="fruit" src="../img/task12_cherries.png">`)
+                  caseCounter1++
+                  break
+               case 2: document.write(`<img class="fruit" src="../img/task12_apple.png">`)
+                  caseCounter2++
+                  break
+               case 3: document.write(`<img class="fruit" src="../img/task12_pineapple.png">`)
+                  caseCounter3++
+                  break
+               case 4: document.write(`<img class="fruit" src="../img/task12_plum.png">`)
+                  caseCounter4++
+                  break
+            }
+            if (caseCounter1 === 3) {
+               document.write(`<br>Ви виграли 100 грн!`)
+            }
+            if (caseCounter2 === 3) {
+               document.write(`<br>Ви виграли 200 грн!`)
+            }
+            if (caseCounter3 === 3) {
+               document.write(`<br>Ви виграли 500 грн!`)
+            }
+            if (caseCounter4 === 3) {
+               document.write(`<br>Ви виграли 1000 грн!`)
+            }
+         }
+      </script>
+   </div>
+</body>
+
+</html>

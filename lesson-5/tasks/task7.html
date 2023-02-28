@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 7</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 7</h1>
+      <p>Вивести на екран N абзаців (N вводиться користувачем) за зразком:</p>
+      <img src="/lesson-5/img/task7.png" alt="Task 7">
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         const chapterQuantity = parseInt(prompt('Введіть кількість абзаців'))
+         const chapterNo = 0
+         const paragraphNo = 0
+         for (let i = chapterNo + 1; i <= chapterQuantity; i++) {
+            document.write(`<h1>Заголовок ${i}</h1>`)
+            for (let k = paragraphNo + 1; k <= i; k++) {
+               document.write(`<p>Розділ ${i}, параграф ${k}</p>`)
+            }
+            document.write('<hr>')
+         }
+      </script>
+   </div>
+</body>
+
+</html>

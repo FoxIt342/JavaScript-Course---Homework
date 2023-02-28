@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 5</h1>
+      <p>Вивести таблицю з 3 рядками і 3 стовпцями</p>
+      <img src="/lesson-5/img/task5.png" alt="Task 5">
+   </div>
+   <div class="result">
+      <p>Результат:</p>
+      <script>
+         let k = 1
+         document.write('<table border="2px">')
+         for (let i = 0; i < 3; i++) {
+            document.write('<tr>')
+            for (let j = 0; j < 3; j++) {
+               document.write(`<td>${k}</td>`)
+               k++
+            }
+            document.write('</tr>')
+         }
+         document.write('</table>')
+      </script>
+   </div>
+</body>
+
+</html>
