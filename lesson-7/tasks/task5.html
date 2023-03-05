@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 5</h1>
+      <p>Створити окремі функції, які переводять:<br>
+         1) Сантиметри у дюйми;<br>
+         2) Кілограми у фунти;<br>
+         3) Кілометри у милі.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         function cmToInch(cmValue) {
+            return cmValue * 0.3937
+         }
+         function kgToPound(kgValue) {
+            return kgValue * 2.2046
+         }
+         function kmToMile(kmValue) {
+            return kmValue * 0.621
+         }
+         const userCmValue = parseFloat(prompt('Введіть значення у сантиметрах'))
+         const userKgValue = parseFloat(prompt('Введіть значення у кілограмах'))
+         const userKmValue = parseFloat(prompt('Введіть значення у кілометрах'))
+         let cmToInchResult = cmToInch(userCmValue)
+         let kgToPoundResult = kgToPound(userKgValue)
+         let kmToMileResult = kmToMile(userKmValue)
+         document.write(`Дюйми: ${cmToInchResult}<br> Фунти: ${kgToPoundResult}<br> Милі: ${kmToMileResult}`)
+      </script>
+   </div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 4</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 4</h1>
+      <p>Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних, кількість
+         додатних, кількість більших за 100.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         function numberCategories(num1, num2, num3) {
+            let counterEven = 0
+            let counterPositive = 0
+            let counterOver_100 = 0
+            for (let i = 0; i < 3; i++) {
+               if (arguments[i] % 2 === 0) {
+                  counterEven++
+               }
+               if (arguments[i] > 0) {
+                  counterPositive++
+               }
+               if (arguments[i] > 100) {
+                  counterOver_100++
+               }
+            }
+            document.write(`Кількість парних чисел: ${counterEven}<br>Кількість додатних чисел: ${counterPositive}<br>Кількість чисел, більших за 100: ${counterOver_100}`)
+         }
+         const userNumber1 = parseInt(prompt('Введіть перше ціле число'))
+         const userNumber2 = parseInt(prompt('Введіть друге ціле число'))
+         const userNumber3 = parseInt(prompt('Введіть третє ціле число'))
+         numberCategories(userNumber1, userNumber2, userNumber3)
+      </script>
+   </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 2</h1>
+      <p>Створити функцію, яка за номером дня дозволяє з’ясувати, чи є цей день робочим.</p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         function isDayWorking(dayNumber) {
+            if (dayNumber < 6)
+               return 'Це робочий день'
+            else
+               return 'Це вихідний день'
+         }
+         const userDayNumber = parseInt(prompt('Введіть номер дня'))
+         let dayType = isDayWorking(userDayNumber)
+         document.write(dayType)
+      </script>
+   </div>
+</body>
+
+</html>
