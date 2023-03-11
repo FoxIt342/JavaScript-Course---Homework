@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 1</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 1</h1>
+      <p>Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він
+         відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є
+         хоча би одна трійка)).
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         // кількість предметів
+         // оцінка по кожному предмету
+         // середній бал: додати і поділити на кількість
+         // умова - чи має двійку, трійку, четвірку
+
+         // функція для створення масиву оцінок
+         function getSubjectScores() {
+            const subjectsNumber = parseInt(prompt('Введіть кількість предметів'))
+            let subjectScores = new Array(subjectsNumber)
+            for (let i = 0; i < subjectScores.length; i++) {
+               let subjectScore = parseInt(prompt(`Введіть оцінку з ${i + 1}-го предмета (від 1 до 5)`))
+               subjectScores[i] = subjectScore
+            }
+            return subjectScores
+         }
+         let subjectScoresArr = getSubjectScores()
+
+         // функція для визначення середнього балу
+         function getAverageScore(subjectScoresArr) {
+            let totalScore = 0
+            for (let i = 0; i < subjectScoresArr.length; i++) {
+               totalScore += subjectScoresArr[i]
+            }
+            return totalScore / subjectScoresArr.length
+         }
+         const averageScoreValue = getAverageScore(subjectScoresArr)
+
+         // функція для визначення мінімальної оцінки
+         function getMinScore(subjectScoresArr) {
+            let minScore = subjectScoresArr[0]
+            for (let i = 1; i < subjectScoresArr.length; i++) {
+               if (subjectScoresArr[i] < minScore)
+                  minScore = subjectScoresArr[i]
+            }
+            return minScore
+         }
+         const userMinScore = getMinScore(subjectScoresArr)
+         // функція для визначення успіхів учня
+         function getStudentSuccess(userMinScore) {
+            let result
+            switch (userMinScore) {
+               case 1:
+               case 2:
+                  result = 'Двієчник'
+                  break;
+               case 3:
+                  result = 'Трієчник'
+                  break;
+               case 4:
+                  result = 'Хорошист'
+                  break;
+               default:
+                  result = 'Відмінник'
+                  break;
+            }
+            return result
+         }
+         const studentSuccess = getStudentSuccess(userMinScore)
+         document.write(`${studentSuccess}: середній бал учня = ${Math.ceil(averageScoreValue)}.`)
+      </script>
+   </div>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 5</h1>
+      <p>Дано послідовність оцінок учня. Підрахувати кількість:<br>
+         1) двійок<br>
+         2) кількість хороших оцінок (добре, відмінно);<br>
+         3) кількість оцінок, які нижче середнього.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         // array with grades
+         function getStudentGrades() {
+            const gradesQnt = parseInt(prompt('Введіть кількість оцінок'))
+            let studentGrades = []
+            for (let i = 0; i < gradesQnt; i++) {
+               let studentGrade = parseInt(prompt('Введіть оцінку від 1 до 5'))
+               studentGrades[i] = studentGrade
+            }
+            return studentGrades
+         }
+         const studentGradesList = getStudentGrades()
+
+
+         //number of grade 2
+         function getGrades2Qnt(studentGradesList) {
+            let counterGrade2 = 0
+            for (let i = 0; i < studentGradesList.length; i++) {
+               if (studentGradesList[i] === 2)
+                  counterGrade2++
+            }
+            return counterGrade2
+         }
+
+         //number of good grades (4 and 5)
+         function getGoodGradesQnt(studentGradesList) {
+            let counterGoodGrades = 0
+            for (let i = 0; i < studentGradesList.length; i++) {
+               if (studentGradesList[i] >= 4)
+                  counterGoodGrades++
+            }
+            return counterGoodGrades
+         }
+
+         //number of below average
+         function getGradesAverage(studentGradesList) {
+            let gradesTotalCounter = 0
+            for (let i = 0; i < studentGradesList.length; i++) {
+               gradesTotalCounter += studentGradesList[i]
+            }
+            return gradesTotalCounter / studentGradesList.length
+         }
+         const gradesAverage = getGradesAverage(studentGradesList)
+
+         function getGradesBelowAverageQnt(studentGradesList, gradesAverage) {
+            let gradesBelowAverageCounter = 0
+            for (let i = 0; i < studentGradesList.length; i++) {
+               if (studentGradesList[i] < gradesAverage)
+                  gradesBelowAverageCounter++
+            }
+            return gradesBelowAverageCounter
+         }
+      </script>
+   </div>
+</body>
+
+</html>

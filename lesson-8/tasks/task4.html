@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 4</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 4</h1>
+      <p>Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :<br>
+         • починаються на букву «А»;<br>
+         • перша і остання літери співпадають;<br>
+         • складаються з більше ніш 5 символів;
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+
+         //numbers starting from A
+         let autoNmbrArr = ['DP123', 'DP123456', 'AA1234ZE', 'AA1234ZA']
+         function getStartingA(autoNmbrArr) {
+            let counter_A = 0
+            for (let i = 0; i < autoNmbrArr.length; i++) {
+               if (autoNmbrArr[i][0] === 'A')
+                  counter_A++
+            }
+            return counter_A
+         }
+
+         //numbers with same start and end 
+         function getSameStartEndLetters(autoNmbrArr) {
+            let counterSameLetter = 0
+            for (let i = 0; i < autoNmbrArr.length; i++) {
+               if (autoNmbrArr[i][0] === autoNmbrArr[i][autoNmbrArr[i].length - 1])
+                  counterSameLetter++
+            }
+            return counterSameLetter
+         }
+
+         //over 5 symb
+         function getNumbersOver5Symb(autoNmbrArr) {
+            let counterOver5Letters = 0
+            for (let i = 0; i < autoNmbrArr.length; i++) {
+               if (autoNmbrArr[i].length > 5)
+                  counterOver5Letters++
+            }
+            return counterOver5Letters
+         }
+      </script>
+   </div>
+</body>
+
+</html>

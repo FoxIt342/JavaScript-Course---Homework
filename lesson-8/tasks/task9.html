@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 9</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 9</h1>
+      <p>Морський бій. Користувач вводить кількість клітинок одновимірного масиву та кількість одиночних кораблів.
+         Комп’ютер довільно розміщує ці одиночні кораблі у масиві по один у клітинці (якщо у клітинці 0, то клітинка
+         пуста, якщо 1 – то це означає, що там є корабель. Користувач вводить номер клітинки, куди стріляє. Гра
+         продовжується до тих пір, поки не будуть потоплені усі кораблі.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+
+         // create an array without ships
+         function getShiplessArr() {
+            const cellQnt = parseInt(prompt('Введіть кількість клітинок'))
+            return new Array(cellQnt).fill(0)
+         }
+         const gameField = getShiplessArr()
+         const shipQnt = parseInt(prompt('Введіть кількість кораблів'))
+         // position ships inside array
+         function getShipsPositions(gameField, shipQnt) {
+            const maxValue = gameField.length - 1
+            const minValue = 0
+            for (let i = 0; i < shipQnt; i++) {
+               let randomShipIndex
+               do {
+                  randomShipIndex = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+               } while (
+                  gameField[randomShipIndex] === 1
+               )
+               gameField[randomShipIndex] = 1
+            }
+            return gameField
+         }
+         const gameFieldShips = getShipsPositions(gameField, shipQnt)
+
+         // user plays the game
+         function playGame(gameFieldShips, shipQnt) {
+            do {
+               const strikeRequest = parseInt(prompt(`Укажіть номер клітинки для пострілу (від 1 до ${gameFieldShips.length})`)) - 1
+               if (gameFieldShips[strikeRequest] === 1) {
+                  alert('Ви знищили корабель')
+                  shipQnt--
+                  gameFieldShips[strikeRequest] = 0
+               } else {
+                  alert('Ви не попали в ціль')
+               }
+            } while (
+               shipQnt > 0
+            )
+         }
+         playGame(gameFieldShips, shipQnt)
+      </script>
+
+   </div>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 2</h1>
+      <p>Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:<br>
+         • номери днів, протягом яких кількість відвідувачів була меншою за 20;<br>
+         • номери днів, коли кількість відвідувачів була максимальною;<br>
+         • номери днів, коли кількість відвідувачів була мінімальною;<br>
+         • загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         // створюємо масив з кількістю відвідувачів щодня протягом тижня
+         function getVisitorsQntWeek(daysNumber) {
+            let visitorsQntWeek = []
+            for (let i = 0; i < daysNumber; i++) {
+               let visitorsQntDay = parseInt(prompt(`Введіть кількість відвідувачів за ${i + 1}-й день`))
+               visitorsQntWeek[i] = visitorsQntDay
+            }
+            return visitorsQntWeek
+         }
+         const daysNumber = 7
+         let visitorsPerWeek = getVisitorsQntWeek(daysNumber)
+         // document.write(visitorsPerWeek)
+
+         //створюємо масив днів, коли к-сть відвідувачів була менше 20
+         function getVisitorsUnderThreshold(visitorsPerWeek, visitorsThreshold) {
+            let visitorsUnderThreshold = []
+            for (let i = 0; i < visitorsPerWeek.length; i++) {
+               if (visitorsPerWeek[i] < visitorsThreshold) {
+                  visitorsUnderThreshold.push(i + 1)
+               }
+            }
+            return visitorsUnderThreshold
+         }
+         const visitorsThreshold = 20
+         let visitorsUnder_20 = getVisitorsUnderThreshold(visitorsPerWeek, visitorsThreshold)
+
+         //створюємо масив днів, коли к-сть була максимальною
+         function getDaysWithMaxVisits(visitorsPerWeek) {
+            let daysWithMaxVisits = []
+            let maxVisitsPerDay = visitorsPerWeek[0]
+            for (let i = 1; i < visitorsPerWeek.length; i++) {
+               if (visitorsPerWeek[i] > maxVisitsPerDay)
+                  maxVisitsPerDay = visitorsPerWeek[i]
+            }
+            for (let i = 0; i < visitorsPerWeek.length; i++) {
+               if (visitorsPerWeek[i] === maxVisitsPerDay) {
+                  daysWithMaxVisits.push(i + 1)
+               }
+            }
+            return daysWithMaxVisits
+         }
+
+         //створюємо масив днів, коли к-сть була мінімальною
+         function getDaysWithMinVisits(visitorsPerWeek) {
+            let daysWithMinVisits = []
+            let minVisitsPerDay = visitorsPerWeek[0]
+            for (let i = 1; i < visitorsPerWeek.length; i++) {
+               if (visitorsPerWeek[i] < minVisitsPerDay)
+                  minVisitsPerDay = visitorsPerWeek[i]
+            }
+            for (let i = 0; i < visitorsPerWeek.length; i++) {
+               if (visitorsPerWeek[i] === minVisitsPerDay) {
+                  daysWithMinVisits.push(i + 1)
+               }
+            }
+            return daysWithMinVisits
+         }
+         // document.write(getDaysWithMinVisits(visitorsPerWeek))
+
+         //загальну кількість клієнтів у робочі дні
+         function getTotalVisitsBusinessDays(visitorsPerWeek) {
+            let totalVisits = 0
+            const businessDaysInd = visitorsPerWeek.length - 2
+            for (let i = 0; i < businessDaysInd; i++) {
+               totalVisits += visitorsPerWeek[i]
+            }
+            return totalVisits
+         }
+
+         //загальну кількість днів на вихідних
+         function getTotalVisitsWeekend(visitorsPerWeek) {
+            let totalVisits = 0
+            for (let i = 5; i < visitorsPerWeek.length; i++) {
+               totalVisits += visitorsPerWeek[i]
+            }
+            return totalVisits
+         }
+
+      </script>
+   </div>
+</body>
+
+</html>
