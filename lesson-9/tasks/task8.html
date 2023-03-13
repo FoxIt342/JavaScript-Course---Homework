@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 8</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 8</h1>
+      <p>Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А»
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         let carNumbersArray = ['DP123', 'DP123456', 'AA1234ZE', 'AA1234ZA']
+         function getCarNumbersStartingA(carNumbersArray) {
+            let carNumbersStartingA = carNumbersArray.filter(item =>
+               item[0] === 'A'
+            )
+            return carNumbersStartingA
+         }
+         document.write(getCarNumbersStartingA(carNumbersArray))
+      </script>
+   </div>
+</body>
+
+</html>

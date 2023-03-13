@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 7</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 7</h1>
+      <p>Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за 1000 грн. дати 30% знижки.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         function getArray() {
+            let minValue = 1
+            let maxValue = 3000
+            const itemsNumber = parseInt(prompt('Введіть кількість елементів масиву'))
+            let arr = []
+            for (let i = 0; i < itemsNumber; i++) {
+               item = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+               arr.push(item)
+            }
+            return arr
+         }
+         const randomArray = getArray()
+
+         function getDiscountedPrices(randomArray) {
+            randomArray.map((item, index, arr) => {
+               if (item > 1000) { arr[index] - (arr[index] *= 0.3) }
+            })
+            return randomArray
+         }
+         document.write(getDiscountedPrices(randomArray))
+      </script>
+   </div>
+</body>
+
+</html>

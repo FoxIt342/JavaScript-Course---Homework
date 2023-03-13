@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 5</h1>
+      <p>Дано масив елементів. Знайти добуток додатних елементів (for...of)
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         function getArray() {
+            let minValue = -100
+            let maxValue = 100
+            const itemsNumber = parseInt(prompt('Введіть кількість елементів масиву'))
+            let arr = []
+            for (let i = 0; i < itemsNumber; i++) {
+               item = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+               arr.push(item)
+            }
+            return arr
+         }
+         const randomArray = getArray()
+
+         let product = 1
+         for (let item of randomArray) {
+            if (item > 0)
+               product *= item
+         }
+         document.write(product)
+      </script>
+   </div>
+</body>
+
+</html>
