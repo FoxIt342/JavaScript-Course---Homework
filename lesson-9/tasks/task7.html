@@ -30,14 +30,21 @@
             return arr
          }
          const randomArray = getArray()
+         
+         randomArray.forEach((price, index, arr) => {
+            if (price > 1000) {
+               arr[index] - (arr[index] *= 0.3)
+            }
+         })
+         document.write(randomArray)
 
-         function getDiscountedPrices(randomArray) {
-            randomArray.map((item, index, arr) => {
-               if (item > 1000) { arr[index] - (arr[index] *= 0.3) }
-            })
-            return randomArray
-         }
-         document.write(getDiscountedPrices(randomArray))
+//          function getDiscountedPrices(randomArray) {
+//             randomArray.map((item, index, arr) => {
+//                if (item > 1000) { arr[index] - (arr[index] *= 0.3) }
+//             })
+//             return randomArray
+//          }
+//          document.write(getDiscountedPrices(randomArray))
       </script>
    </div>
 </body>
