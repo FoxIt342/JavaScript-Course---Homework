@@ -60,11 +60,16 @@
          document.write(`Номери цін, що вищі за 1000: ${indicesSecuritiesPricesOver_1000}<br>`)
 
          //3)Сформувати список з тих цін, які більші за попереднє значення
-         let pricesHigherThanPrevious = securitiesPriceHistory.reduce((acc, price, index, arr) => {
-            if (arr[index] > arr[index - 1])
-               return [...acc, price]
-            return [...acc]
-         }, [])
+//          let pricesHigherThanPrevious = securitiesPriceHistory.reduce((acc, price, index, arr) => {
+//             if (arr[index] > arr[index - 1])
+//                return [...acc, price]
+//             return [...acc]
+//          }, [])
+         let pricesHigherThanPrevious = []
+         for (let i = 1; i < securitiesPriceHistory.length; i++) {
+            if (securitiesPriceHistory[i] > securitiesPriceHistory[i - 1])
+               pricesHigherThanPrevious.push(securitiesPriceHistory[i])
+         }
 
          document.write(`Ціни, які більші за попереднє значення: ${pricesHigherThanPrevious}<br>`)
 
