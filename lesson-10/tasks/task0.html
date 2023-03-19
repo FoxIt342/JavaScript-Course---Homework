@@ -81,11 +81,18 @@
          document.write(`Значення цін у відсотках стосовно максимального: ${pricesPercentageFromMax}<br>`)
 
          // 5) Підрахувати кількість змін цін
-         let priceChangesQnt = securitiesPriceHistory.reduce((acc, price, index, arr) => {
-            if (arr[index + 1] !== arr[index])
-               return acc + 1
-            return acc
-         }, 0)
+//          let priceChangesQnt = securitiesPriceHistory.reduce((acc, price, index, arr) => {
+//             if (arr[index + 1] !== arr[index])
+//                return acc + 1
+//             return acc
+//          }, 0)
+         
+         
+         let priceChangesQnt = 0
+         for (let i = 1; i < securitiesPriceHistory.length; i++) {
+            if (securitiesPriceHistory[i] !== securitiesPriceHistory[i - 1])
+               priceChangesQnt++
+         }
          document.write(`Кількість змін цін: ${priceChangesQnt}<br>`)
 
          // 6)Визначити, чи є ціна, що менше 1000
