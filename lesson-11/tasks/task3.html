@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 3</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 3. Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів.
+         Користувач стріляє, вказуючи координати. Гра продовжується, поки не потоплено усі кораблі або у користувача не
+         закінчаться снаряди.</h1>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+         // create an empty game field
+         const fieldHeight = 6
+         const fieldWidth = 6
+         const shipQnt = 5
+
+         function getGameField(height, width) {
+            let field = []
+            for (let r = 0; r < height; r++) {
+               let row = []
+               for (let c = 0; c < width; c++) {
+                  row.push(0)
+               }
+               field.push(row)
+            }
+            return field
+         }
+         let gameField = getGameField(fieldHeight, fieldWidth)
+
+         // place the ships
+         function getFieldWithShips(arr, ships, minValue, maxValue) {
+            while (ships !== 0) {
+               const randomRow = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+               const randomColumn = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+               if (arr[randomRow][randomColumn] === 0) {
+                  arr[randomRow][randomColumn] = 1
+                  ships--
+               }
+            }
+            return arr
+         }
+         let fieldWithShips = getFieldWithShips(gameField, shipQnt, 0, 5)
+
+         // play the game
+
+         const projectiles = parseInt(prompt('Укажіть кількість снарядів'))
+
+         function shootShips(field, ships, projectiles) {
+            do {
+               const rowNo = parseInt(prompt('Укажіть номер рядка ( від 1 до 6)'))
+               const columnNo = parseInt(prompt('Укажіть номер стовпця ( від 1 до 6)'))
+               if (field[rowNo - 1][columnNo - 1] === 1) {
+                  alert('Ви потопили корабель.')
+                  ships--
+               } else {
+                  alert('Ви промазали')
+                  projectiles--
+               }
+            }
+            while (ships > 0 && projectiles > 0);
+            if (ships !== 0)
+               alert(`Снаряди закінчились. У ворога залишилось ${ships} кораблів`)
+            else
+               alert(`Ви знищили всі ворожі кораблі`)
+         }
+         console.log(shootShips(fieldWithShips, shipQnt, projectiles))
+
+      </script>
+   </div>
+</body>
+
+</html>

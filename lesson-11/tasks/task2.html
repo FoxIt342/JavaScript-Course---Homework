@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 2. Дано інформацію про прибуток К магазинів протягом тижня. Знайти:</h1>
+      <div>
+         1) загальний прибуток кожного масиву за тиждень;<br>
+         2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і
+         т.д.);<br>
+         3) загальний прибуток за робочі дні<br>
+         4) загальний прибуток за вихідні дні<br>
+         5) максимальний прибуток за середу<br>
+         6) сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200<br>
+         7) відсортувати кожен тиждень за зростанням<br>
+         8) відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні
+         рядків потрібно порівнювати максимальні елементи у кожному з цих рядків<br>
+         9) упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба
+         знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен
+         іти раніше).<br>
+      </div>
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+
+         // function getStoresProfitOverWeek() {
+         //    let minValue = 1
+         //    let maxValue = 10000
+         //    const storeQnt = parseInt(prompt('Введіть кількість магазинів'))
+         //    let arr = []
+         //    for (let store = 0; store < storeQnt; store++) {
+         //       let subArr = []
+         //       for (let day = 0; day < 7; day++) {
+         //          item = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+         //          subArr.push(item)
+         //       }
+         //       arr.push(subArr)
+         //    }
+         //    return arr
+         // }
+         // const storesProfitOverWeek = getStoresProfitOverWeek()
+         // console.log(storesProfitOverWeek)
+
+         // Масив із прибутком магазинів за тиждень
+
+
+         function getStoreWeeklyProfit() {
+            let minValue = 1
+            let maxValue = 10000
+            let subArr = []
+            for (let day = 0; day < 7; day++) {
+               item = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+               subArr.push(item)
+            }
+            return subArr
+         }
+
+         const storeQnt = parseInt(prompt('Введіть кількість магазинів'))
+         function getStoresWeeklyProfit(storeQnt) {
+            let arr = []
+            for (let store = 0; store < storeQnt; store++) {
+               const storeWeeklyProfit = getStoreWeeklyProfit()
+               arr.push(storeWeeklyProfit)
+            }
+            return arr
+         }
+         const storesWeeklyProfit = getStoresWeeklyProfit(storeQnt)
+         // console.log(storesWeeklyProfit)
+
+         // 1) загальний прибуток кожного масиву за тиждень;
+         function getTotalWeeklyProfitPerStore(storesWeeklyProfit, storeQnt) {
+            let storesWeeklySum = []
+            for (let i = 0; i < storeQnt; i++) {
+               let storeWeeklySum = 0
+               for (let k = 0; k < storesWeeklyProfit[i].length; k++) {
+                  storeWeeklySum += storesWeeklyProfit[i][k]
+               }
+               storesWeeklySum.push(storeWeeklySum)
+            }
+            return storesWeeklySum
+         }
+         // console.log(getTotalWeeklyProfitPerStore(storesWeeklyProfit, storeQnt))
+
+         // 2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+
+         function getTotalStoresProfitPerDay(storesWeeklyProfit, storeQnt) {
+            let totalStoresProfitPerDay = []
+            for (let k = 0; k < 7; k++) {
+               let storeSumWeek = 0
+               for (let i = 0; i < storeQnt; i++) {
+                  storeSumWeek += storesWeeklyProfit[i][k]
+               }
+               totalStoresProfitPerDay.push(storeSumWeek)
+            }
+            return totalStoresProfitPerDay
+         }
+         // console.log(getTotalStoresProfitPerDay(storesWeeklyProfit, storeQnt))
+
+         // 3) загальний прибуток за робочі дні
+         function getTotalProfitWorkingDays(storesWeeklyProfit, storeQnt) {
+            let totalProfitWorkingDays = 0
+            for (let i = 0; i < storeQnt; i++) {
+               let storeProfitWorkingDays = 0
+               for (let k = 0; k < 5; k++) {
+                  storeProfitWorkingDays += storesWeeklyProfit[i][k]
+               }
+               totalProfitWorkingDays += storeProfitWorkingDays
+            }
+            return totalProfitWorkingDays
+         }
+         // console.log(getTotalProfitWorkingDays(storesWeeklyProfit, storeQnt))
+
+         // 4) загальний прибуток за вихідні дні
+         function getTotalProfitWeekend(storesWeeklyProfit, storeQnt) {
+            let totalProfitWeekend = 0
+            for (let i = 0; i < storeQnt; i++) {
+               let storeProfitWeekend = 0
+               for (let k = 5; k < 7; k++) {
+                  storeProfitWeekend += storesWeeklyProfit[i][k]
+               }
+               totalProfitWeekend += storeProfitWeekend
+            }
+            return totalProfitWeekend
+         }
+         // console.log(getTotalProfitWeekend(storesWeeklyProfit, storeQnt))
+
+
+         // 5) максимальний прибуток за середу
+         function getMaxProfitWednesday(storesWeeklyProfit, storeQnt) {
+            let maxProfit = -Infinity
+            for (let i = 0; i < storeQnt; i++) {
+               for (let k = 2; k < 3; k++) {
+                  if (storesWeeklyProfit[i][k] > maxProfit)
+                     maxProfit = storesWeeklyProfit[i][k]
+               }
+            }
+            return maxProfit
+         }
+         // console.log(getMaxProfitWednesday(storesWeeklyProfit, storeQnt))
+
+         // 6) сформувати загальний список (одновимірний масив) зі значеннями, що більші за 200
+
+         function getValuesOver_200(storesWeeklyProfit, storeQnt) {
+            let valuesOver_200 = []
+            for (let i = 0; i < storeQnt; i++) {
+               for (let k = 0; k < storesWeeklyProfit[i].length; k++) {
+                  if (storesWeeklyProfit[i][k] > 200)
+                     valuesOver_200.push(storesWeeklyProfit[i][k])
+               }
+            }
+            return valuesOver_200
+         }
+         // console.log(getValuesOver_200(storesWeeklyProfit, storeQnt))
+
+
+         // 7) відсортувати кожен тиждень за зростанням
+
+         function sortWeeksAscending(storesWeeklyProfit, storeQnt) {
+            for (let i = 0; i < storeQnt; i++) {
+               for (let k = 0; k < storesWeeklyProfit[i].length; k++) {
+                  storesWeeklyProfit[i].sort((el1, el2) => el1 - el2)
+               }
+            }
+            return storesWeeklyProfit
+         }
+         // console.log(sortWeeksAscending(storesWeeklyProfit, storeQnt))
+
+         // 8) відсортувати тижні (рядки) за спаданням максимального елемента у цьому тижні (рядку), тобто при порівнянні
+         // рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+
+         let maxRowElements = storesWeeklyProfit.map(row => Math.max(...row))
+
+         function sortWeeksDescendingByMaxEl(maxRows, matr) {
+            const preLastIndex = maxRows.length - 1
+            for (let i = 0; i < preLastIndex; i++) {
+               let currentMaxInd = i
+               for (let k = i + 1; k < maxRows.length; k++) {
+                  if (maxRows[k] > maxRows[currentMaxInd])
+                     currentMaxInd = k
+               }
+               if (i !== currentMaxInd) {
+                  let tmp = maxRows[i]
+                  maxRows[i] = maxRows[currentMaxInd]
+                  maxRows[currentMaxInd] = tmp
+
+                  tmp = matr[i]
+                  matr[i] = matr[currentMaxInd]
+                  matr[currentMaxInd] = tmp
+               }
+            }
+         }
+         // sortWeeksDescendingByMaxEl(maxRowElements, storesWeeklyProfit)
+         // console.table(storesWeeklyProfit)
+
+         // 9) упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба
+         // знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен
+         // іти раніше).
+         let rowElementsSum = getTotalWeeklyProfitPerStore(storesWeeklyProfit, storeQnt)
+
+         function sortWeeksBySum(rowSums, matr) {
+            const preLastIndex = rowSums.length - 1
+            for (let i = 0; i < preLastIndex; i++) {
+               let currentMaxInd = i
+               for (let k = i + 1; k < rowSums.length; k++) {
+                  if (rowSums[k] > rowSums[currentMaxInd])
+                     currentMaxInd = k
+               }
+               if (i !== currentMaxInd) {
+                  let tmp = rowSums[i]
+                  rowSums[i] = rowSums[currentMaxInd]
+                  rowSums[currentMaxInd] = tmp
+
+                  tmp = matr[i]
+                  matr[i] = matr[currentMaxInd]
+                  matr[currentMaxInd] = tmp
+               }
+            }
+         }
+
+         // sortWeeksBySum(rowElementsSum, storesWeeklyProfit)
+         // console.table(storesWeeklyProfit)
+
+
+      </script>
+   </div>
+</body>
+
+</html>

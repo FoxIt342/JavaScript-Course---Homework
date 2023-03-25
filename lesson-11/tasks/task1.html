@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 1</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 1. Знайти суми елементів у вказаній області</h1>
+      <p>1)<br>
+         <img src="../img/img1.png" alt="Table">
+      </p>
+      <p>2)<br>
+         <img src="../img/img2.png" alt="Table">
+      </p>
+      <p>3)<br>
+         <img src="../img/img3.png" alt="Table">
+      </p>
+      <p>4)<br>
+         <img src="../img/img4.png" alt="Table">
+      </p>
+      <p>5) Суму парних рядків</p>
+      <p>6) Суму непарних стовпців</p>
+      <p>7) У парних рядках – непарні стовпці, у непарних – парні.</p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         let array = [[1, 34, 25, 17], [24, 54, 32, 8], [124, 23, 65, 21], [43, 2, 7]]
+         document.write(`Поточний масив:<br> ${array[0]},<br> ${array[1]},<br> ${array[2]},<br> ${array[3]}<br>`)
+         //1
+         function arraySumFirstSq(array) {
+            let arrSum1 = 0
+            let limitR = Math.ceil(array.length / 2)
+            for (let r = 0; r < limitR; r++) {
+               let limitC = Math.ceil(array[r].length / 2)
+               for (let c = 0; c < limitC; c++) {
+                  arrSum1 += array[r][c]
+               }
+
+            }
+            return arrSum1
+         }
+         const result1 = arraySumFirstSq(array)
+         document.write(`Сума елементів в області 1: ${result1}<br>`)
+
+         //2
+         function arraySumSecondSq(array) {
+            let arrSum2 = 0
+            let limitR = Math.ceil(array.length / 2)
+            for (let r = 0; r < limitR; r++) {
+               let limitC = Math.ceil(array[r].length / 2)
+               for (let c = limitC; c < array.length; c++)
+                  arrSum2 += array[r][c]
+            }
+            return arrSum2
+         }
+         const result2 = arraySumSecondSq(array)
+         document.write(`Сума елементів в області 2: ${result2}<br>`)
+
+         //3
+         function arraySumThirdSq(array) {
+            let arrSum = 0
+            let limitR = Math.ceil(array.length / 2)
+            for (let r = limitR; r < array.length; r++) {
+               let limitC = Math.ceil(array[r].length / 2)
+               for (let c = 0; c < limitC; c++) {
+                  arrSum += array[r][c]
+               }
+            }
+            return arrSum
+         }
+         const result3 = arraySumThirdSq(array)
+         document.write(`Сума елементів в області 3: ${result3}<br>`)
+
+         //4
+         function arraySumFourthSq(array) {
+            let arrSum = 0
+            let limitR = Math.ceil(array.length / 2)
+            for (let r = limitR; r < array.length; r++) {
+               let limitC = Math.ceil(array[r].length / 2)
+               for (let c = limitC; c < array[r].length; c++) {
+                  arrSum += array[r][c]
+               }
+            }
+            return arrSum
+         }
+         const result4 = arraySumFourthSq(array)
+         document.write(`Сума елементів в області 4: ${result4}<br>`)
+
+         //5) Суму парних рядків
+         function getSumEvenRows(array) {
+            let arrSum = 0
+            for (let r = 0; r < array.length; r += 2) {
+               for (let c = 0; c < array[r].length; c++) {
+                  arrSum += array[r][c]
+               }
+            }
+            return arrSum
+         }
+         const result5 = getSumEvenRows(array)
+         document.write(`Сума парних рядків: ${result5}<br>`)
+
+         // 6) Суму непарних стовпців
+         function getSumOddColumns(array) {
+            let arrSum = 0
+            for (let r = 0; r < array.length; r++) {
+               for (let c = 1; c < array[r].length; c += 2) {
+                  arrSum += array[r][c]
+               }
+            }
+            return arrSum
+         }
+         const result6 = getSumOddColumns(array)
+         document.write(`Сума непарних стовпців: ${result6}<br>`)
+
+         // 7) У парних рядках – непарні стовпці, у непарних – парні.
+         // function getSumEvenRowsOddColumnsViceVersa(array) {
+         //    let arrSumEvenRows = 0
+         //    for (let r = 0; r < array.length; r += 2) {
+         //       for (let c = 1; c < array[r].length; c += 2) {
+         //          arrSumEvenRows += array[r][c]
+         //       }
+         //    }
+         //    let arrSumOddRows = 0
+         //    for (let oddR = 1; oddR < array.length; oddR += 2) {
+         //       for (let evenC = 0; evenC < array[oddR].length; evenC += 2) {
+         //          arrSumOddRows += array[oddR][evenC]
+         //       }
+         //    }
+         //    return arrSumEvenRows + arrSumOddRows
+         // }
+
+         function getSumEvenRowsOddColumnsViceVersa(array) {
+            let arrSum = 0
+            for (let r = 0; r < array.length; r++) {
+               for (let c = (1 - (r % 2)); c < array[r].length; c += 2) {
+                  arrSum += array[r][c]
+               }
+            }
+            return arrSum
+         }
+
+         const result7 = getSumEvenRowsOddColumnsViceVersa(array)
+         document.write(`Сума непарних стовпців у парних рядках і парних стовпців у непарних рядках: ${result7}<br>`)
+      </script>
+   </div>
+</body>
+
+</html>
