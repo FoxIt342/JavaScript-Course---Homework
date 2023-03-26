@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 4</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 4.</h1>
+      <p> Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних таблиць за
+         зразком.</p>
+      <img src="../img/img.png" alt="Image">
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+         let array = [5, 7, 12, 1, 52, 3, 45, 7, 2]
+
+         // Bubble sorting
+         function getSortedArrayBubble(arr) {
+            let changed
+            document.write(`Бульбашкове сортування:<br>`)
+            do {
+               changed = false
+
+               for (let i = 1; i < arr.length; i++) {
+                  if (arr[i - 1] > arr[i]) {
+                     let temp = arr[i - 1]
+                     arr[i - 1] = arr[i]
+                     arr[i] = temp
+                     changed = true
+                     document.write(`${arr}<br>`)
+                  }
+               }
+            } while (changed)
+            return arr
+         }
+         console.log(getSortedArrayBubble(array))
+
+         // Coctail sorting
+         function getSortedArrayCoctail(arr) {
+            document.write(`<br>Сортування змішуванням:<br>`)
+            let leftIndex = 0
+            let rightIndex = arr.length - 1
+            while (leftIndex < rightIndex) {
+
+               for (let i = leftIndex; i < rightIndex; i++) {
+                  if (arr[i] > arr[i + 1]) {
+                     let temp = arr[i + 1]
+                     arr[i + 1] = arr[i]
+                     arr[i] = temp
+                     document.write(`${arr}<br>`)
+                  }
+               }
+               rightIndex--
+
+               for (let i = rightIndex; i > leftIndex; i--) {
+                  if (arr[i] < arr[i - 1]) {
+                     let temp = arr[i - 1]
+                     arr[i - 1] = arr[i]
+                     arr[i] = temp
+                     document.write(`${arr}<br>`)
+                  }
+               }
+               leftIndex++
+
+            }
+            return arr
+         }
+         let array2 = [5, 7, 12, 1, 52, 3, 45, 7, 2]
+         console.log(getSortedArrayCoctail(array2))
+
+         // Insertion sort
+
+         function getSortedArrayInsertion(arr) {
+            document.write('<br>Сортування включенням:<br>')
+            let key, i
+            for (let k = 1; k < arr.length; k++) {
+               key = arr[k]
+               i = k - 1
+               while (i >= 0 && arr[i] > key) {
+                  arr[i + 1] = arr[i]
+                  i = i - 1
+               }
+               arr[i + 1] = key
+               document.write(`${arr}<br>`)
+            }
+            return arr
+         }
+         let array3 = [5, 7, 12, 1, 52, 3, 45, 7, 2]
+         console.log(getSortedArrayInsertion(array3))
+
+      </script>
+   </div>
+</body>
+
+</html>

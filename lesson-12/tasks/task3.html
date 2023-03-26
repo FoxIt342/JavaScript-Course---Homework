@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 3</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 3.</h1>
+      <p> Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування включеннями.</p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+         // create an array
+         function getArray(itemsNumber) {
+            let minValue = 1
+            let maxValue = 100
+            let arr = []
+            for (let i = 0; i < itemsNumber; i++) {
+               item = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+               arr.push(item)
+            }
+            return arr
+         }
+         const randomArray = getArray(30)
+         // console.log(randomArray)
+
+         //sort ascending
+         function getSortedArray(arr) {
+            let key, i
+            let counter = 0
+            for (let k = 1; k < arr.length; k++) {
+               key = arr[k]
+               i = k - 1
+               while (i >= 0 && arr[i] > key) {
+                  arr[i + 1] = arr[i]
+                  i = i - 1
+                  counter++
+               }
+               arr[i + 1] = key
+            }
+            return counter
+
+         }
+         console.log(getSortedArray(randomArray))
+
+      </script>
+   </div>
+</body>
+
+</html>

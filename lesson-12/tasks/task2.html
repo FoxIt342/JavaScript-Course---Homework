@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 2.</h1>
+      <p> Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування змішуванням.</p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+         // // create an array
+         function getArray(itemsNumber) {
+            let minValue = 1
+            let maxValue = 100
+            let arr = []
+            for (let i = 0; i < itemsNumber; i++) {
+               item = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+               arr.push(item)
+            }
+            return arr
+         }
+         const randomArray = getArray(30)
+
+         // sort ascending (cocktail)
+
+         function getSortedArray(arr) {
+            let leftIndex = 0
+            let rightIndex = arr.length - 1
+            let counterLeft = 0
+            let counterRight = 0
+            while (leftIndex < rightIndex) {
+
+               for (let i = leftIndex; i < rightIndex; i++) {
+                  if (arr[i] > arr[i + 1]) {
+                     let temp = arr[i + 1]
+                     arr[i + 1] = arr[i]
+                     arr[i] = temp
+                     counterLeft++
+                  }
+               }
+               rightIndex--
+
+               for (let i = rightIndex; i > leftIndex; i--) {
+                  if (arr[i] < arr[i - 1]) {
+                     let temp = arr[i - 1]
+                     arr[i - 1] = arr[i]
+                     arr[i] = temp
+                     counterRight++
+                  }
+               }
+               leftIndex++
+            }
+            return counterLeft + counterRight
+         }
+         console.log(getSortedArray(randomArray))
+      </script>
+   </div>
+</body>
+
+</html>
