@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 5</h1>
+      <div>Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться
+         перевірка.</div>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+
+         function getTimedAddExpression(min, max) {
+            setInterval(() => {
+               const firstNum = Math.floor(Math.random() * (max - min + 1) + min)
+               const secondNum = Math.floor(Math.random() * (max - min + 1) + min)
+               const userInput = parseInt(prompt(`Вкажіть правильну суму виразу: ${firstNum} + ${secondNum}`))
+               if (userInput === firstNum + secondNum) alert('Правильно!')
+               else alert(`Неправильно! Правильна відповідь: ${firstNum + secondNum}`)
+            }, 10000);
+         }
+         console.log(getTimedAddExpression(1, 100))
+
+      </script>
+   </div>
+</body>
+
+</html>

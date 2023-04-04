@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 1</title>
+</head>
+
+<body>
+   <div class="task">
+      <img src="../img/task1.jpg" alt="Task 1">
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+         // Нехай  x0=1, xi = xi-1+2i, де i = 1,2... . Визначити  x10. Розв’язати з використанням рекурсивних і нерекурсивних алгоритмів
+         function getResult_nonrecursive(k) {
+            let result = 1
+            for (let x = 1; x <= k; x++) {
+               result += 2 * x
+            }
+            return result
+         }
+         console.log(getResult_nonrecursive(10))
+
+         function getResult_recursive(x) {
+            if (x === 0) return 1
+            else
+               return getResult_recursive(x - 1) + 2 * x
+         }
+         console.log(getResult_recursive(10))
+
+      </script>
+   </div>
+</body>
+
+</html>

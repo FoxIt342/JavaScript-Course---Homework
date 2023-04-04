@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 3</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 3</h1>
+      <div>З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати
+         по одному значенню від заданого мінімального до заданого максимального. Якщо значення досягне максимального, то
+         наступним буде мінімальне значення. З використанням цієї функції реалізувати перебір номерів місяців.</div>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+
+         function getIteration(minValue, maxValue) {
+            let value = minValue
+            function counter() {
+               if (value <= maxValue) return value++
+               else
+                  return minValue
+            }
+            return counter
+         }
+         let iteration = getIteration(1, 12)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+         document.write(`${iteration()}<br>`)
+
+
+      </script>
+   </div>
+</body>
+
+</html>

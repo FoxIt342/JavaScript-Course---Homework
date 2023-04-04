@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 4</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 4</h1>
+      <div>З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати
+         по одній букві наперед заданого слова. З використанням нього розробити гру «Перекладач». Виводимо для
+         користувача опис цього слова і по одну букву користувач вводить переклад цього слова. Підрахувати кількість
+         вгаданих букв.</div>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         alert('Вгадайте слово англійською: водний простір, що вкриває більшу частину земної кулі')
+
+         function getCharacter(word) {
+            let counter = -1
+            function characterIterator() {
+               counter++
+               return word[counter]
+            }
+            return characterIterator
+         }
+         let gameWord = 'ocean'
+         let character = getCharacter(gameWord)
+
+
+         function playGame(char, word) {
+            let count = 0
+            let userCharacter
+            for (let i = 0; i < word.length; i++) {
+               userCharacter = prompt('Введіть одну букву слова')
+               if (char() === userCharacter) count++
+            }
+            return count
+         }
+
+         const gameResult = playGame(character, gameWord)
+         document.write(`Кількість вгаданих букв: ${gameResult}`)
+
+      </script>
+   </div>
+</body>
+
+</html>

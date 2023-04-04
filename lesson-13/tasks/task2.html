@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <div class="task">
+      <img src="../img/task2.jpg" alt="Task 2">
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+         //Нехай X0 = X1 = 1, Xi = Xi-1 + 2Xi-2, де i = 2, 3... Визначити Xn . Розв’язати з використанням рекурсивних і нерекурсивних алгоритмів
+
+         function getResultNonrecursive(n) {
+            let x0 = x1 = 1
+            let xi
+            for (i = 2; i <= n; i++) {
+               xi = x1 + 2 * x0
+               x0 = x1
+               x1 = xi
+            }
+            return xi
+         }
+         console.log(getResultNonrecursive(5))
+
+
+         function getResultRecursive(n) {
+            if (n < 2) return 1
+            else
+               return getResultRecursive(n - 1) + 2 * getResultRecursive((n - 2))
+         }
+         console.log(getResultRecursive(5))
+      </script>
+   </div>
+</body>
+
+</html>
