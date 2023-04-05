@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 1</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 1.</h1>
+      <p>Описати масив об’єктів – сайтів розроблених компанією з такими властивостями<br>
+         ----- Властивості ------<br>
+         - назва компанії на час розробки (назву періодично змінюють)<br>
+         - власник компанії<br>
+         - споснсори (масив спонсорів)<br>
+         * прізвище спонсора<br>
+         * ім’я спонсора<br>
+         * сума вкладень спонсора<br>
+         - рік випуску<br>
+         - вартість сайту<br>
+         Знайти:<br>
+         1) загальну вартість усіх сайтів<br>
+         2) кількість сайтів, що було зроблено між 2000 та 2009 рр.<br>
+         3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000<br>
+         4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)<br>
+         5) знайти рік, коли прибуток був найбільшим<br>
+         6) упорядкувати список за спаданням прибутку<br>
+         7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         //Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+         let companySites = [
+            {
+               tempCompanyName: 'Rozetka',
+               companyOwner: 'Ivan Pylypchuk',
+               sponsors: [
+                  {
+                     surname: 'Haharina',
+                     name: 'Alina',
+                     investmentAmount: 335664
+                  },
+                  {
+                     surname: 'Oles',
+                     name: 'Oleksandr',
+                     investmentAmount: 654335
+                  },
+                  {
+                     surname: 'Shevchenko',
+                     name: 'Taras',
+                     investmentAmount: 984345
+                  },
+               ],
+               deploymentYear: 2017,
+               sitePrice: 32541
+            },
+            {
+               tempCompanyName: 'Uber',
+               companyOwner: 'Lesia Ukrainka',
+               sponsors: [
+                  {
+                     surname: 'Franko',
+                     name: 'Ivan',
+                     investmentAmount: 324545
+                  },
+                  {
+                     surname: 'Pidmogylnyi',
+                     name: 'Valerian',
+                     investmentAmount: 335664
+                  },
+                  {
+                     surname: 'Samchuk',
+                     name: 'Ulas',
+                     investmentAmount: 654335
+                  },
+                  {
+                     surname: 'Chykalenko',
+                     name: 'Evhen',
+                     investmentAmount: 984345
+                  },
+               ],
+               deploymentYear: 2013,
+               sitePrice: 54341000
+            },
+            {
+               tempCompanyName: 'Nova Poshta',
+               companyOwner: 'Olena Pchilka',
+               sponsors: [
+                  {
+                     surname: 'Kulish',
+                     name: 'Petro',
+                     investmentAmount: 8745
+                  },
+                  {
+                     surname: 'Kulish',
+                     name: 'Panteleymon',
+                     investmentAmount: 6564
+                  },
+                  {
+                     surname: 'Vilinska',
+                     name: 'Mariia',
+                     investmentAmount: 15433
+                  },
+                  {
+                     surname: 'Yablonska',
+                     name: 'Sofiia',
+                     investmentAmount: 1563
+                  },
+               ],
+               deploymentYear: 2007,
+               sitePrice: 74535
+            },
+         ]
+
+         // 1) загальну вартість усіх сайтів
+         const totalSitesPrice = companySites.reduce((acc, site) => acc + site.sitePrice, 0)
+         // console.log(totalSitesPrice)
+
+         //-------------------------------
+
+
+         // 2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+         const sitesNumber = companySites.reduce((acc, site) => {
+            if (site.deploymentYear > 2000 && site.deploymentYear < 2009) return acc + 1
+            else return acc
+         }
+            , 0)
+         // console.log(sitesNumber)
+
+         //----------------------------------------
+
+         // 3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+
+         // function getInvestmentsPerSite(arr, limit) {
+         //    let sitesInvestments = []
+         //    for (const site of arr) {
+         //       let investmentsSum = 0
+         //       for (const sponsor of site.sponsors) {
+         //          investmentsSum += sponsor.investmentAmount
+         //       }
+         //       if (investmentsSum > limit)
+         //          sitesInvestments.push(investmentsSum)
+         //    }
+         //    return sitesInvestments.length
+         // }
+         function getInvestmentsPerSite(arr, limit) {
+            let siteSums = []
+            for (let i = 0; i < arr.length; i++) {
+               let sum = 0
+               for (let k = 0; k < arr[i].sponsors.length; k++) {
+                  sum += arr[i].sponsors[k].investmentAmount
+               }
+               if (sum > limit)
+                  siteSums.push(sum)
+            }
+            return siteSums.length
+         }
+         // console.log(getInvestmentsPerSite(companySites, 100000))
+         //---------------------------------------------------------------
+
+         // 4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+         const sponsorsList = companySites.map((site) => site.sponsors)
+
+         // console.log(sponsorsList.flat())
+
+         //--------------------------------------------------------------
+
+         // 5) знайти рік, коли прибуток був найбільшим
+
+         function getHighestIncomeYear(arr) {
+            let maxProfit = arr[0].sitePrice
+            let highestIncomeYear = arr[0].deploymentYear
+            for (let i = 1; i < arr.length; i++) {
+               if (arr[i].sitePrice > maxProfit) {
+                  maxProfit = arr[i].sitePrice
+                  highestIncomeYear = arr[i].deploymentYear
+               }
+            }
+            return highestIncomeYear
+         }
+         // console.log(getHighestIncomeYear(companySites))
+
+         //-----------------------------------------------------------------
+
+
+         // 6) упорядкувати список за спаданням прибутку
+
+         let sortedCompanySitesList = companySites.sort((el1, el2) => el2.sitePrice - el1.sitePrice)
+
+         // console.log(sortedCompanySitesList)
+
+         //--------------------------------------------------------------------
+
+         // 7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+         function getSortedArrays(arr, limit) {
+            let arrCopy = JSON.parse(JSON.stringify(arr))
+            let priceOverLimit = []
+            let priceUnderLimit = []
+            for (let i = 0; i < arrCopy.length; i++) {
+               if (arrCopy[i].sitePrice <= 100000) priceUnderLimit.push(arrCopy[i].sitePrice)
+               else priceOverLimit.push(arrCopy[i].sitePrice)
+            }
+            return { priceUnderLimit, priceOverLimit }
+         }
+         // console.log(getSortedArrays(companySites, 100000))
+
+      </script>
+   </div>
+</body>
+
+</html>

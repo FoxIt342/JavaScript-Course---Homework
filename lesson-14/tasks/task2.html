@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 2.</h1>
+      <p> Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.</p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+
+         let dateInfo = {
+            day: 24,
+            month: 3,
+            year: 2012
+         }
+         function getYearAfter_n_Months(date) {
+            const n = parseInt(prompt('Введіть кількість місяців'))
+            const shiftedMonth = ((date.month - 1 + n) % 12) + 1
+            if (dateInfo.month + n >= 12)
+               return date.year + Math.floor((dateInfo.month + n) / 12)
+            else
+               return date.year
+         }
+
+         console.log(getYearAfter_n_Months(dateInfo))
+
+      </script>
+   </div>
+</body>
+
+</html>
