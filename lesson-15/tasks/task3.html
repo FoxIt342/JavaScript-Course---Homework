@@ -62,14 +62,14 @@
             }
 
             //render - виведення інформації про тестування на екран
-            showTestResult() {
-               document.write(`Правильних відповідей: ${this.numOfCorrectAnswers}<br>Неправильних відповідей: ${this.numOfIncorrectAnswers}`)
+            toString() {
+               return `Правильних відповідей: ${this.numOfCorrectAnswers}<br>Неправильних відповідей: ${this.numOfIncorrectAnswers}`
             }
          }
 
          let multchecker = new MultChecker(7)
          multchecker.checkResult()
-         multchecker.showTestResult()
+         document.write(multchecker)
       </script>
    </div>
 </body>
