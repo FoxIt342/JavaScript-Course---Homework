@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 0</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 0.</h1>
+      <p>Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми, а у
+         іншому – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних
+         значенням.<br>
+         Використати обидва методи стосовно обидвох об’єктів (використати call, apply)
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+
+         let obj1 = {
+            numbersArray: [0, 5, 7, 14, 46, 7, 75, 3, 7, 45, 95, 4],
+            getSum: function () {
+               return this.numbersArray.reduce((acc, num) => acc + num, 0)
+            }
+         }
+
+         let obj2 = {
+            numbersArray: [5, 45, 4, 85, 76, 2, 6, 74, 7, 32, 5, 9],
+            getProductBetweenNums: function (min, max) {
+               return this.numbersArray.reduce((acc, num) => {
+                  if (num > min && num < max) return acc * num
+                  else return acc
+               }
+                  , 1)
+            }
+         }
+         //---- Сума чисел першого масиву----
+         let obj1Sum = obj1.getSum()
+         // console.log(obj1Sum)
+
+         //-----Сума чисел другого масиву методом call
+         let obj2SumCall = obj1.getSum.call(obj2)
+         // console.log(obj2SumCall)
+
+         //------Сума чисел другого масиву методом apply
+         let obj2SumApply = obj1.getSum.apply(obj2)
+         // console.log(obj2SumApply)
+
+         //-----Добуток чисел першого масиву методом call
+         let obj1ProductCall = obj2.getProductBetweenNums.call(obj1, 3, 50)
+         // console.log(obj1ProductCall)
+
+         //-----Добуток чисел першого масиву методом apply
+         let obj1ProductApply = obj2.getProductBetweenNums.apply(obj1, [3, 50])
+         // console.log(obj1ProductApply)
+
+         //-----Добуток чисел другого масиву-------
+         let obj2Product = obj2.getProductBetweenNums(3, 50)
+         // console.log(obj2Product)
+      </script>
+   </div>
+</body>
+
+</html>

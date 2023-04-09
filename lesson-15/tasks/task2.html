@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 2.</h1>
+      <p>Створити об’єкт «Авто».</p>
+      <p>Поля(властивості):</p>
+      <ul>
+         <li>
+            Марка
+         </li>
+         <li>
+            Розмір бака
+         </li>
+         <li>
+            Кількість наявних літрів
+         </li>
+         <li>
+            Кількість місць
+         </li>
+         <li>
+            Кількість пасажирів
+         </li>
+      </ul>
+      <p>
+         Методи (дії):
+      </p>
+      <ul>
+         <li>
+            Заправка на вказану кількість літрів
+         </li>
+         <li>
+            Виведення кількості пасажирів
+         </li>
+         <li>
+            Додавання пасажирів
+         </li>
+         <li>
+            Висадка пасажирів
+         </li>
+      </ul>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+         function Car(brand, tankSize, fuelReserve, seatsNumber, passengersNumber) {
+            this.brand = brand
+            this.tankSize = tankSize
+            this.fuelReserve = fuelReserve
+            this.seatsNumber = seatsNumber
+            this.passengersNumber = passengersNumber
+         }
+
+         //Заправка на вказану кількість літрів
+         Car.prototype.refuel = function () {
+            const volumeRefuelUser = (parseInt(prompt('Укажіть, на скільки літрів дозаправити бак')))
+            if (this.fuelReserve + volumeRefuelUser <= this.tankSize) {
+               this.fuelReserve += volumeRefuelUser
+               alert(`Двигун заправлено до ${this.fuelReserve} л`)
+            }
+            else {
+               alert(`Забагато пального, ми заправили повний бак. Будь ласка, оплатіть ${this.tankSize - this.fuelReserve} л на касі`)
+               this.fuelReserve = this.tankSize
+            }
+         }
+
+         //Виведення кількості пасажирів
+         Car.prototype.showPassengers = function () {
+            document.write(`Наразі в автомобілі перебуває стільки пасажирів: ${this.passengersNumber}`)
+         }
+
+         // Додавання пасажирів
+         Car.prototype.addPassengers = function () {
+            const availableSeats = this.seatsNumber - this.passengersNumber
+            const passengersToAdd = parseInt(prompt(`Скільки пасажирів хочете додати? Наразі доступних місць: ${availableSeats}`))
+            if (passengersToAdd <= availableSeats) {
+               this.passengersNumber += passengersToAdd
+               alert(`Успішно додано! Поточна кількість пасажирів в авто: ${this.passengersNumber}`)
+            }
+            else {
+               alert(`Недостатньо вільних місць для такої кількості пасажирів. Спробуйте інше авто`)
+            }
+         }
+
+         // Висадка пасажирів
+         Car.prototype.dropOffPassengers = function (params) {
+            const passengersToDropOff = parseInt(prompt('Скільки пасажирів виходить з автомобіля?'))
+            if (passengersToDropOff <= this.passengersNumber) {
+               this.passengersNumber -= passengersToDropOff
+               alert('Пасажири вийшли з автомобіля')
+            }
+            else {
+               alert('В автомобілі немає стільки пасажирів')
+            }
+         }
+
+         let car1 = new Car('Mitsubishi', 63, 24, 4, 3)
+         console.log(car1)
+         car1.refuel()
+         car1.showPassengers()
+         car1.addPassengers()
+         car1.dropOffPassengers()
+      </script>
+   </div>
+</body>
+
+</html>

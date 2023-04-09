@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 3</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 3.</h1>
+      <p>Розробити клас MultChecker для перевірки таблиці множення</p>
+      <p>Поля</p>
+      <ul>
+         <li>Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)</li>
+         <li>Кількість правильних відповідей</li>
+         <li>Кількість неправильних відповідей</li>
+      </ul>
+      <p>Методи</p>
+      <ul>
+         <li>Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)</li>
+         <li>Перевірка правильності вказаної відповіді</li>
+         <li>render - виведення інформації про тестування на екран</li>
+      </ul>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+         class MultChecker {
+            constructor(numberToCheck) {
+               this.numberToCheck = numberToCheck
+               this.numOfCorrectAnswers = 0
+               this.numOfIncorrectAnswers = 0
+            }
+            // Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+            getExpressionToCheck(minNum, maxNum) {
+               let randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1) + minNum)
+               return {
+                  message: `${this.numberToCheck} * ${randomNumber} = ?`,
+                  correctResult: this.numberToCheck * randomNumber
+               }
+            }
+
+            // Перевірка правильності вказаної відповіді
+            checkResult() {
+               do {
+                  let expression = this.getExpressionToCheck(0, 10)
+                  const message = parseInt(prompt(`${expression.message}`))
+                  if (expression.correctResult === message) {
+                     alert('Це правильна відповідь!')
+                     this.numOfCorrectAnswers++
+                  }
+                  else {
+                     alert(`Неправильно! Правильна відповідь: ${expression.correctResult}`)
+                     this.numOfIncorrectAnswers++
+                  }
+               } while (confirm('Продовжити?'))
+            }
+
+            //render - виведення інформації про тестування на екран
+            showTestResult() {
+               document.write(`Правильних відповідей: ${this.numOfCorrectAnswers}<br>Неправильних відповідей: ${this.numOfIncorrectAnswers}`)
+            }
+         }
+
+         let multchecker = new MultChecker(7)
+         multchecker.checkResult()
+         multchecker.showTestResult()
+      </script>
+   </div>
+</body>
+
+</html>

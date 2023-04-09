@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 4</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 4.</h1>
+      <p>Розробити клас Baner</p>
+      <p>Поля</p>
+      <ul>
+         <li>Масив об’єктів ( графічних зображень та посилань на сайти)</li>
+      </ul>
+      <p>Методи</p>
+      <ul>
+         <li>Метод випадкового вибору об’єкта (графічного зображення та посилання)</li>
+         <li>Метод виведення випадкового банера</li>
+      </ul>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+
+         class Baner {
+            constructor(images) {
+               this.bannerArray = images
+            }
+
+            //Метод випадкового вибору об’єкта (графічного зображення та посилання)
+            getRandomImage(minNum, maxNum) {
+               let randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1) + minNum)
+               return randomNumber
+            }
+
+            //Метод виведення випадкового банера
+            showRandomBanner() {
+               let objIndex = this.getRandomImage(0, 3)
+               let randomImage = this.bannerArray[objIndex]
+               document.write(`<a href="${randomImage.link}"><img src="${randomImage.image}" alt="Image" width="630"></a>`)
+            }
+         }
+
+         let arrImages = [
+            { image: '../img/cherries.jpg', link: 'https://www.google.com' },
+            { image: '../img/cupcakes.jpg', link: 'https://www.google.com' },
+            { image: '../img/frog.jpg', link: 'https://www.google.com' },
+            { image: '../img/hedgehog.webp', link: 'https://www.google.com' }
+         ]
+         let banner = new Baner(arrImages)
+         banner.showRandomBanner()
+      </script>
+
+   </div>
+</body>
+
+</html>

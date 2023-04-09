@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 1</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 1.</h1>
+      <p>Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.
+      </p>
+      <p>Поля(властивості)</p>
+      <ul>
+         <li>
+            Масив, у якому зберігається поле з зайцями
+         </li>
+      </ul>
+      <p>
+         Методи (дії)
+      </p>
+      <ul>
+         <li>Метод пострілу (задається позиція пострілу)</li>
+         <li>
+            Виведення ігрового поля
+         </li>
+      </ul>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+
+         function ShootingGallery() {
+            this.hairs = this.getRandom(0, 1, 10)
+         }
+
+         ShootingGallery.prototype.getRandom = function (minNum, maxNum, arrLength) {
+            let arr = []
+            for (let i = 0; i < arrLength; i++) {
+               const random = Math.floor(Math.random() * (maxNum - minNum + 1) + minNum)
+               arr.push(random)
+            }
+            return arr
+         }
+         ShootingGallery.prototype.shoot = function () {
+            return userShot = parseInt(prompt('Укажіть координату пострілу (від 1 до 10)'))
+         }
+         ShootingGallery.prototype.play = function () {
+            do {
+               const shootCoordinate = this.shoot()
+               if (this.hairs[shootCoordinate - 1] === 1) {
+                  alert('На жаль, ви убили зайця (краще б книжку почитали, чесне слово)')
+                  this.hairs[shootCoordinate - 1] = 0
+               }
+               else {
+                  alert('На щастя, ви не влучили')
+               }
+            } while (this.hairs.includes(1));
+            if (this.hairs.includes(1) === false)
+               alert('Ви безжально вбили всіх зайців :(')
+         }
+
+         let shootingGallery = new ShootingGallery()
+         shootingGallery.play()
+
+      </script>
+   </div>
+</body>
+
+</html>
