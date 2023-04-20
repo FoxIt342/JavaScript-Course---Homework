@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 4</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 4.</h1>
+      <p>Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для зберігання кількості
+         купюр кожного із номіналів від 5 до 200 гривень. Реалізувати методи знаходження максимальної та мінімальної
+         сум, які може видати банкомат, та метод зняття деякої суми.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         class Banknote {
+            #value
+            #quantity
+            constructor(initValue, initQuantity) {
+               this.Value = initValue
+               this.Quantity = initQuantity
+            }
+            get Value() {
+               return this.#value
+            }
+            get Quantity() {
+               return this.#quantity
+            }
+            set Value(val) {
+               if (val !== 5 && val !== 10 && val !== 20 && val !== 50 && val !== 100 && val !== 200)
+                  throw new Error('Incorrect face value')
+               return this.#value = val
+            }
+            set Quantity(val) {
+               if (val <= 0) throw new Error('Incorrect value')
+               return this.#quantity = val
+            }
+         }
+         let banknotes = [
+            new Banknote(5, 5),
+            new Banknote(10, 3),
+            new Banknote(20, 10),
+            new Banknote(50, 10),
+            new Banknote(100, 5),
+            new Banknote(200, 5)
+         ]
+
+         class TBankomat {
+            constructor(banknotes, amountToWithdraw) {
+               this.banknotes = banknotes
+            }
+            getMaxToWithdraw() {
+               let sum = 0
+               for (let i = 0; i < banknotes.length; i++) {
+                  sum += this.banknotes[i].Value * this.banknotes[i].Quantity
+               }
+               return sum
+            }
+            getMinToWithdraw() {
+               let minValue = Infinity
+               for (const banknote of this.banknotes) {
+                  if (banknote.Quantity > 0 && banknote.Value < minValue)
+                     minValue = banknote.Value
+               }
+               return minValue
+            }
+            withdrawMoney(amountToWithdraw) {
+               if (amountToWithdraw < this.getMinToWithdraw() && amountToWithdraw > this.getMaxToWithdraw() && (amountToWithdraw % this.getMinToWithdraw() !== 0)) throw new Error('Amount out of range')
+               this.banknotes.sort((el1, el2) => el2.Value - el1.Value)
+               let amountLeft = amountToWithdraw
+               for (const banknote of this.banknotes) {
+                  if (amountLeft > 0 && banknote.Quantity > 0 && banknote.Value <= amountLeft) {
+                     const banknotesNum = Math.min(Math.floor(amountLeft / banknote.Value), banknote.Quantity)
+                     banknote.Quantity -= banknotesNum
+                     amountLeft -= banknote.Value * banknotesNum
+                  }
+
+               }
+            }
+            toString() {
+               return `Total budget: ${this.getMaxToWithdraw()}<br>
+               Minimum available sum: ${this.getMinToWithdraw()}`
+            }
+
+         }
+         let obj = new TBankomat(banknotes)
+         document.write(obj)
+         console.log(obj.withdrawMoney(135))
+      </script>
+   </div>
+</body>
+
+</html>

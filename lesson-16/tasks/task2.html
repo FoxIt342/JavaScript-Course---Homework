@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 2.</h1>
+      <p>Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового еквіваленту.
+         Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення курсу
+         долара, при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому полі.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+
+         class TMoney {
+            #dollarAmount
+            #exchangeRateBuy
+
+            constructor(exchangeRateBuy, amount_UAH) {
+               this.DollarAmount = 0
+               this.ExchangeRateBuy = exchangeRateBuy
+               this.exchangeRateSell = 0
+            }
+
+            get ExchangeRateBuy() {
+               return this.#exchangeRateBuy
+            }
+            get DollarAmount() {
+               return this.#dollarAmount
+            }
+            set ExchangeRateBuy(val) {
+               if (val < 0) throw new Error('Invalid number')
+               return this.#exchangeRateBuy = val
+            }
+            set DollarAmount(val) {
+               if (this.#dollarAmount + val < 0) throw new Error('Insufficient funds')
+               return this.#dollarAmount = val
+            }
+            buyDollar(amount_UAH) {
+               this.#dollarAmount += amount_UAH / this.#exchangeRateBuy
+            }
+            getSellDollarRate(amount_UAH) {
+               let dollarToExchange = this.#dollarAmount
+               this.exchangeRateSell = (amount_UAH + 100) / this.#dollarAmount
+               return this.exchangeRateSell
+            }
+            sellDollar(amount_UAH) {
+               let exchangeRateSell = this.getSellDollarRate(amount_UAH)
+               this.#dollarAmount -= amount_UAH / exchangeRateSell
+            }
+
+            toString() {
+               return `Dollar account: ${Math.floor(this.#dollarAmount)}<br>RateBuy: ${this.#exchangeRateBuy}<br>RateSell: ${this.exchangeRateSell}`
+            }
+         }
+         let tmoney = new TMoney(40, 500)
+         tmoney.buyDollar(800)
+         tmoney.sellDollar(800)
+
+         document.write(tmoney)
+      </script>
+   </div>
+</body>
+
+</html>

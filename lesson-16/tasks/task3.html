@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 3</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 3.</h1>
+      <p>Об’єкт “Фірма” (використати члени-класи)
+      </p>
+      <p>Поля</p>
+      <ul>
+         <li>назва фірми;</li>
+         <li>дата заснування (рік, місяць);</li>
+         <li>послуги (назва послуги, вартість, термін виконання);</li>
+         <li>адреси філіалів (країна, місто, вулиця, номер будинку);</li>
+      </ul>
+      <p>Методи</p>
+      <ul>
+         <li>визначення кількості років існування фірми;</li>
+         <li>виведення всіх філіалів фірми у вказаному місті;</li>
+         <li>виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу.</li>
+      </ul>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+         class FoundationDate {
+            #yearOfFoundation
+            #monthOfFoundation
+            constructor(year, month) {
+               this.#yearOfFoundation = year
+               this.#monthOfFoundation = month
+            }
+            get YearOfFoundation() {
+               return this.#yearOfFoundation
+            }
+            get MonthOfFoundation() {
+               return this.#monthOfFoundation
+            }
+            set YearOfFoundation(val) {
+               if (val < 0) throw new Error('Date out of range')
+               return this.#yearOfFoundation = val
+            }
+            set MonthOfFoundation(val) {
+               if (val < 0 || val > 12) throw new Error('Date out of range')
+               return this.#monthOfFoundation = val
+            }
+            toString() {
+               return `Foundation date: ${this.#monthOfFoundation}\/${this.#yearOfFoundation}`
+            }
+         }
+
+         class CompanyService {
+            #name
+            #price
+            #executionDays
+            constructor(name, price, executionDays) {
+               this.Name = name
+               this.Price = price
+               this.ExecutionDays = executionDays
+            }
+            get Name() {
+               return this.#name
+            }
+            get Price() {
+               return this.#price
+            }
+            get ExecutionDays() {
+               return this.#executionDays
+            }
+            set Name(val) {
+               if (val.length === 0) throw new Error('Name cannot be empty')
+               return this.#name = val
+            }
+            set Price(val) {
+               if (val <= 0) throw new Error('Incorrect value')
+               return this.#price = val
+            }
+            set ExecutionDays(val) {
+               if (val <= 0) throw new Error('Incorrect value')
+               return this.#executionDays = val
+            }
+            toString() {
+               return `Service: ${this.#name}, price: ${this.#price}, days to complete: ${this.#executionDays}<br>`
+            }
+         }
+
+         class Branch {
+            #country
+            #city
+            #street
+            #buildingNo
+            constructor(country, city, street, buildingNo) {
+               this.Country = country
+               this.City = city
+               this.Street = street
+               this.BuildingNo = buildingNo
+            }
+            get Country() {
+               return this.#country
+            }
+            get City() {
+               return this.#city
+            }
+            get Street() {
+               return this.#street
+            }
+            get BuildingNo() {
+               return this.#buildingNo
+            }
+            set Country(val) {
+               if (val.length === 0) throw new Error('Cannot be empty')
+               return this.#country = val
+            }
+            set City(val) {
+               if (val.length === 0) throw new Error('Cannot be empty')
+               return this.#city = val
+            }
+            set Street(val) {
+               if (val.length === 0) throw new Error('Cannot be empty')
+               return this.#street = val
+            }
+            set BuildingNo(val) {
+               if (val < 1) throw new Error('Cannot be empty')
+               return this.#buildingNo = val
+            }
+            toString() {
+               return `${this.#buildingNo} ${this.#street} ${this.#city}, ${this.#country}<br>`
+            }
+         }
+
+         let branches = [
+            new Branch('Ukraine', 'Kyiv', 'Volodymyrska', 5),
+            new Branch('Brazil', 'Anápolis', 'Vila Santa Isabel', 898),
+            new Branch('USA', 'New York', '5th Avenue', 2),
+            new Branch('Spain', 'Barcelona', 'Diagonal Av.', 5),
+            new Branch('Spain', 'Barcelona', 'Diagonal Av.', 2)
+         ]
+
+         let services = [
+            new CompanyService('Translation', 1000, 7),
+            new CompanyService('Proofreading', 500, 4),
+            new CompanyService('DTP', 350, 3),
+            new CompanyService('LSO', 200, 3)
+         ]
+
+
+         class Company {
+            #currentYear
+            #currentMonth
+            #name
+            constructor(name, year, month, currentYear, currentMonth, services, branches, cityName) {
+               this.#name = name
+               this.foundationDate = new FoundationDate(year, month)
+               this.services = services
+               this.branches = branches
+               this.CurrentYear = currentYear
+               this.CurrentMonth = currentMonth
+            }
+            get CurrentYear() {
+               return this.#currentYear
+            }
+            get CurrentMonth() {
+               return this.#currentMonth
+            }
+            set CurrentYear(val) {
+               if (val < 0) throw new Error('Date out of range')
+               return this.#currentYear = val
+            }
+            set CurrentMonth(val) {
+               if (val < 0 || val > 12) throw new Error('Date out of range')
+               return this.#currentMonth = val
+            }
+            getCompanyAge() {
+               if (this.#currentMonth < this.foundationDate.MonthOfFoundation)
+                  return this.#currentYear - this.foundationDate.YearOfFoundation - 1
+               else return this.#currentYear - this.foundationDate.YearOfFoundation
+            }
+            getBranchByCity(cityName) {
+               let branchesByCity = branches.filter(el => el.city === cityName)
+               return `${branchesByCity}`
+            }
+            getServicesByPriceAndDeadline(price, timeOfExecution) {
+               let servicesByFilter = services.filter(el => el.price <= price && el.ExecutionDays <= timeOfExecution)
+               return `${servicesByFilter}`
+            }
+            toString() {
+               return `Company name: ${this.#name}<br>${this.foundationDate}<br>Company age: ${this.getCompanyAge()}<br>
+               Branche addresses:<br> ${this.branches}<br>
+               Services:<br> ${this.services}`
+            }
+         }
+         let company = new Company('Rozetka', 1991, 5, 2023, 4, services, branches, 'Barcelona')
+
+      </script>
+   </div>
+</body>
+
+</html>
