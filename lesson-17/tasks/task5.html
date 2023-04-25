@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 5.</h1>
+      <p>Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий
+         опис), назва книги, жанр, видавництво (назва, реєстраційний номер, рік заснування)). Реалізувати розділи
+         бібліотеки (спеціальна література, хобі, домашнє господарство і т.д.), походження книги і наявність на даний
+         час. Організувати додавання/вилучення книг та вибір книг за назвою, за ПІБ автора, за видавництвом.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <script>
+
+         class Author {
+            #name
+            #birthYear
+            #summary
+            constructor(name, birthYear, summary) {
+               this.Name = name
+               this.BirthYear = birthYear
+               this.Summary = summary
+            }
+            get Name() {
+               return this.#name
+            }
+            get BirthYear() {
+               return this.#birthYear
+            }
+            get Summary() {
+               return this.#summary
+            }
+            set Name(val) {
+               if (val.length < 1) throw new Error('Cannot be empty')
+               this.#name = val
+            }
+            set BirthYear(val) {
+               if (val > 2023) throw new Error('Invalid date')
+               this.#birthYear = val
+            }
+            set Summary(val) {
+               if (val.length < 1) throw new Error('Cannot be empty')
+               this.#summary = val
+            }
+         }
+
+         class Publisher {
+            #name
+            #regNum
+            #foundationYear
+            constructor(name, regNum, foundationYear) {
+               this.Name = name
+               this.RegNum = regNum
+               this.FoundationYear = foundationYear
+            }
+            get Name() {
+               return this.#name
+            }
+            get RegNum() {
+               return this.#regNum
+            }
+            get FoundationYear() {
+               return this.#foundationYear
+            }
+            set Name(val) {
+               if (val.length < 1) throw new Error('Cannot be empty')
+               this.#name = val
+            }
+            set RegNum(val) {
+               if (typeof val !== 'number' || isNaN(val) || val < 0) throw new Error('Invalid data')
+               this.#regNum = val
+            }
+            set FoundationYear(val) {
+               if (val > 2023) throw new Error('Invalid data')
+               this.#foundationYear = val
+            }
+         }
+
+         class Book {
+            #title
+            #genre
+            #origin
+            #section
+            #availability
+            constructor(initData) {
+               this.Title = initData.title
+               this.Genre = initData.genre
+               this.Origin = initData.origin
+               this.Section = initData.section
+               this.Availability = initData.availability
+               this.author = new Author(initData.author.name, initData.author.birthYear, initData.author.summary)
+               this.publisher = new Publisher(initData.publisher.name, initData.publisher.regNum, initData.publisher.foundationYear)
+            }
+            get Title() {
+               return this.#title
+            }
+            get Genre() {
+               return this.#genre
+            }
+            get Origin() {
+               return this.#origin
+            }
+            get Section() {
+               return this.#section
+            }
+            get Availability() {
+               return this.#availability
+            }
+            set Title(val) {
+               if (val.length < 1) throw new Error('Cannot be empty')
+               this.#title = val
+            }
+            set Genre(val) {
+               if (val.length < 1) throw new Error('Cannot be empty')
+               this.#genre = val
+            }
+            set Origin(val) {
+               if (val.length < 1) throw new Error('Cannot be empty')
+               this.#origin = val
+            }
+            set Section(val) {
+               if (val.length < 1) throw new Error('Cannot be empty')
+               this.#section = val
+            }
+            set Availability(val) {
+               if (val !== 'available' && val !== 'unavailable') throw new Error('Invalid data')
+               this.#availability = val
+            }
+         }
+
+         class Library {
+            constructor(initBooks) {
+               this.books = initBooks
+            }
+
+            addBook(newBook) {
+               this.books.push(newBook)
+            }
+            removeBook(bookTitleToRemove) {
+               for (let i = 0; i < this.books.length; i++) {
+                  const book = this.books[i]
+                  if (book.Title === bookTitleToRemove && book.Availability === 'unavailable') throw new Error('Book is unavailable')
+                  if (book.Title === bookTitleToRemove && book.Availability === 'available') {
+                     book.Availability = 'unavailable'
+                  }
+               }
+            }
+            findByName(searchBookTitle) {
+               return this.books.filter(book => book.Title === searchBookTitle)
+            }
+
+            findByAuthor(authorName) {
+               return this.books.filter(book => book.author.Name === authorName)
+            }
+
+            findByPublisher(publishingHouse) {
+               return this.books.filter(book => book.publisher.Name === publishingHouse)
+            }
+            isAvailable(searchBookTitle) {
+               return this.books.some(book => book.Title === searchBookTitle && book.Availability === 'available')
+            }
+         }
+         let books = [
+            new Book({ title: 'Three in a boat', genre: 'Comedy', origin: 'gift', section: 'Дозвілля та рибалка', availability: 'available', author: { name: 'Jerome K. Jerome', birthYear: 1854, summary: 'BlaBlabla' }, publisher: { name: 'TPG', regNum: 526874569, foundationYear: 1956 } }),
+            new Book({ title: 'Guards! Guards!', genre: 'Fentesy', origin: 'bought', section: 'Спеціальна література', availability: 'available', author: { name: 'Terry Pratchett', birthYear: 1954, summary: 'BlaBlabla' }, publisher: { name: 'Видавництво Старого Лева', regNum: 45674569, foundationYear: 1996 } }),
+            new Book({ title: 'Місто', genre: 'Classics', origin: 'gift', section: 'Архітектура', availability: 'unavailable', author: { name: 'Valerian Midmohylnyi', birthYear: 1884, summary: 'BlaBlabla' }, publisher: { name: 'Школа', regNum: 48657569, foundationYear: 1976 } }),
+            new Book({ title: 'Пан', genre: 'Scandinavian Literature', origin: 'bought', section: 'Хобі', availability: 'available', author: { name: 'Knut Hamsun', birthYear: 1874, summary: 'BlaBlabla' }, publisher: { name: 'Текст', regNum: 85474569, foundationYear: 1986 } }),
+            new Book({ title: 'Час погорди', genre: 'Fentesy', origin: 'bought', section: 'Домашнє господарство', availability: 'available', author: { name: 'Andrzej Sapkowski', birthYear: 1974, summary: 'BlaBlabla' }, publisher: { name: 'Клуб Сімейного Дозвілля', regNum: 87454569, foundationYear: 1987 } }),
+         ]
+         let library = new Library(books)
+         console.log(library)
+
+      </script>
+   </div>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 4</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 4.</h1>
+      <p>Склад. База товарів, які зберігаються на складі: назва товару, одиниця виміру, кількість, фірма виробник
+         (назва, реєстраційний номер). Організувати реєстрацію/відвантаження товарів, фільтрація за назвою товару,
+         фільтрація за назвою фірми
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+
+      <script>
+         class Brand {
+            #brandName
+            #regNumber
+            constructor(brandName, regNumber) {
+               this.BrandName = brandName
+               this.RegNumber = regNumber
+            }
+            get BrandName() {
+               return this.#brandName
+            }
+            get RegNumber() {
+               return this.#regNumber
+            }
+            set BrandName(val) {
+               if (val.length < 1) throw new Error('Value cannot be empty')
+               this.#brandName = val
+            }
+            set RegNumber(val) {
+               if (typeof val !== 'number' || isNaN(val) || val < 0 || val.toString().length !== 8) throw new Error('Incorrect registration number')
+               this.#regNumber = val
+            }
+         }
+
+         class Product {
+            #name
+            #measurement
+            #quantity
+            constructor(initData) {
+               this.Name = initData.name
+               this.Measurement = initData.measurement
+               this.Quantity = initData.quantity
+               this.brand = new Brand(initData.brand.brandName, initData.brand.regNumber)
+            }
+            get Name() {
+               return this.#name
+            }
+            get Measurement() {
+               return this.#measurement
+            }
+            get Quantity() {
+               return this.#quantity
+            }
+            set Name(val) {
+               if (val.length < 1) throw new Error('Value cannot be empty')
+               this.#name = val
+            }
+            set Measurement(val) {
+               if (val.length < 1) throw new Error('Value cannot be empty')
+               this.#measurement = val
+            }
+            set Quantity(val) {
+               if (typeof val !== 'number' || isNaN(val) || val < 0) throw new Error('Incorrect value')
+               this.#quantity = val
+            }
+         }
+
+         class Warehouse {
+            constructor(initProducts) {
+               this.products = initProducts
+            }
+            addNewProducts(newProduct) {
+               this.products.push(newProduct)
+            }
+            shippingProducts(shippedName, shippedBrandname, qnt) {
+               for (let i = 0; i < this.products.length; i++) {
+                  const product = this.products[i]
+                  if (product.Name === shippedName && product.brand.BrandName === shippedBrandname) {
+                     if (product.Quantity < qnt) throw new Error('Insufficient stock')
+                     if (product.Quantity === qnt) {
+                        this.products.splice(i, 1)
+                        return product
+                     }
+                     if (product.Quantity > qnt) {
+                        this.Quantity -= qnt
+                        return product
+                     }
+                  }
+               }
+            }
+            getFilterByName(searchName) {
+               return this.products.filter(item => item.Name === searchName)
+            }
+            getFilterByBrandname(searchBrandName) {
+               return this.products.filter(item => item.brand.BrandName === searchBrandName)
+            }
+         }
+         let productList = [
+            new Product({ name: 'milk', measurement: 'pack', quantity: 50, brand: { brandName: 'Molokia', regNumber: 21898904 } }),
+            new Product({ name: 'milk', measurement: 'pack', quantity: 40, brand: { brandName: 'Danone', regNumber: 35698854 } }),
+            new Product({ name: 'chocolate', measurement: 'pc', quantity: 150, brand: { brandName: 'Spell', regNumber: 36898874 } }),
+            new Product({ name: 'wine', measurement: 'pack', quantity: 30, brand: { brandName: 'Kris', regNumber: 35478941 } }),
+         ]
+         console.log(productList)
+         let newProduct = new Product({ name: 'honey', measurement: 'pack', quantity: 20, brand: { brandName: 'YuschenkoLimited', regNumber: 65498904 } })
+         let warehouse = new Warehouse(productList)
+         // let byName = warehouse.getFilterByName('milk')
+         // let byBrandname = warehouse.getFilterByBrandname('Danone')
+         // let newproducts = warehouse.addNewProducts(newProduct)
+         // let shipped = warehouse.shippingProducts('milk', 'Molokia', 50)
+
+      </script>
+   </div>
+</body>
+
+</html>
