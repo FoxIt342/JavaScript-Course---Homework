@@ -1,0 +1,53 @@
+body {
+   background: #36A6BD;
+   max-width: 1250px;
+   margin: 0 auto;
+   min-height: 100%;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+.task {
+   background: linear-gradient(135deg, #314187, #192247);
+   padding: 15px;
+   color: beige;
+}
+.result {
+   background-color: #e45f8e;;
+   padding: 15px;
+   flex-grow: 1;
+}
+.result-flex div {
+   max-width: 350px;
+   display: flex;
+   justify-content: space-between;
+}
+img.fruit {
+   max-width: 130px;
+   max-height: 130px;
+}
+.buttons {
+   margin-bottom: 15px;
+}
+div.labels {
+   margin-bottom: 5px;
+}
+.buttons::after{
+   border-top: 1px solid #344048;
+   display: block;
+   position: relative;
+   top: 12px;
+   width: 30%;
+   content: "";
+}
+.convert {
+   margin-bottom: 15px;
+}
+.labels.uah::after{
+   border-top: 1px solid #344048;
+   display: block;
+   position: relative;
+   width: 30%;
+   content: "";
+}

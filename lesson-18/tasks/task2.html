@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 2.</h1>
+      <p>Зробити конвертер валют (курси валют – константи у скрипті)
+      </p>
+      <img src="../img/task2.jpg" alt="task2">
+   </div>
+   <div class="result">
+      <h3>Результат:</h3>
+      <div>
+         <div class="labels uah">
+            <label for="uah">Сума в гривнях
+               <input type="text" id="uah" value="0">
+            </label>
+            <div>
+               <button class="convert" id="convert">Конвертувати</button>
+            </div>
+         </div>
+         <div class="labels">
+            <label for="eur">Сума в євро
+               <input type="text" id="eur" value="0">
+            </label>
+         </div>
+         <div class="labels">
+            <label for="usd">Сума в доларах
+               <input type="text" id="usd" value="0">
+            </label>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      function converter(usdRate, euroRate) {
+         const uahMoney = parseFloat(document.getElementById("uah").value)
+         document.getElementById("usd").value = (uahMoney * euroRate).toFixed(2)
+         document.getElementById("eur").value = (uahMoney * usdRate).toFixed(2)
+      }
+      window.onload = function () {
+         document.querySelector('.convert').onclick = converter(38, 40)
+      }
+
+   </script>
+</body>
+
+</html>

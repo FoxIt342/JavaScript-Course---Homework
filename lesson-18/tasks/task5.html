@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 5.</h1>
+      <p>Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити і вставити на сторінку)
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <div class="table-container">
+
+      </div>
+      <script>
+         function getRandom(minValue, maxValue) {
+            return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+         }
+
+         function getTable(minValue, maxValue, rows, columns) {
+            let table = document.createElement('table')
+            table.border = '2px'
+            let t = document.querySelector('.table-container')
+            t.append(table)
+            for (let i = 0; i < rows; i++) {
+               let row = document.createElement('tr')
+               let r = document.getElementsByTagName('table')[0].append(row)
+               for (let j = 0; j < columns; j++) {
+                  let k = getRandom(minValue, maxValue)
+                  let cell = document.createElement('td')
+                  cell.innerHTML = k
+                  row.append(cell)
+               }
+            }
+         }
+         getTable(1, 9, 4, 3)
+
+
+      </script>
+   </div>
+</body>
+
+</html>

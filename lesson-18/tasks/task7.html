@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 7</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 7.</h1>
+      <p>Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів транспорту (авто,
+         автобус, літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х
+         гідів(використати - radio buttons). Ціни визначте самі. Підрахувати загальну вартість.
+      </p>
+   </div>
+   <div class="result">
+      <div>Результат:</div>
+      <div class="container">
+         <div class="transport">
+            <h4>Please choose the transport type</h4>
+            <select name="transport-type" id="transport-type">
+               <option value="1000">Car</option>
+               <option value="300">Bus</option>
+               <option value="4500">Plane</option>
+            </select>
+         </div>
+         <div class="meal">
+            <h4>Please choose the meal on board</h4>
+            <label for="breakfast">
+               Breakfast
+               <input type="checkbox" class="meal-type" name="breakfast" id="breakfast" value="35">
+            </label>
+            <label for="lunch">
+               Lunch
+               <input type="checkbox" class="meal-type" name="lunch" id="lunch" value="50">
+            </label>
+            <label for="dinner">
+               Dinner
+               <input type="checkbox" class="meal-type" name="dinner" id="dinner" value="65">
+            </label>
+         </div>
+         <div class="guide">
+            <h4>Please choose your guide</h4>
+            <label for="guide-1">Antonio Banderas
+               <input type="radio" class="guide-name" name="guide-1" id="guide-1" value="250">
+            </label>
+            <label for="guide-2">Javier Bardem
+               <input type="radio" class="guide-name" name="guide-2" id="guide-2" value="350">
+            </label>
+            <label for="guide-3">Pedro Pascal
+               <input type="radio" class="guide-name" name="guide-3" id="guide-3" value="450">
+            </label>
+         </div>
+         <div class="cost">
+            <label for="total-sum"> Total sum:
+               <input type="text" placeholder="0" id="total-sum">
+            </label>
+         </div>
+      </div>
+      <script>
+         function getMealSum() {
+            const mealPriceList = document.querySelectorAll('.meal-type')
+            let mealSum = 0
+            for (const meal of mealPriceList) {
+               if (meal.checked) mealSum += parseFloat(meal.value)
+            }
+            return mealSum
+         }
+         function getGuidePrice() {
+            const guidePrices = document.querySelectorAll('.guide-name')
+            let guidePrice
+            for (const price of guidePrices) {
+               if (price.checked) guidePrice = parseFloat(price.value)
+            }
+            return guidePrice
+         }
+         function getTotalSum() {
+            const transportPrice = parseFloat(document.getElementById('transport-type').value)
+            const mealSum = getMealSum()
+            const guidePrice = getGuidePrice()
+            const totalSum = transportPrice + mealSum + guidePrice
+            document.getElementById('total-sum').value = totalSum
+         }
+         window.onload = function () {
+            document.querySelector('input').onchange = getTotalSum
+         }
+
+      </script>
+   </div>
+</body>
+
+</html>

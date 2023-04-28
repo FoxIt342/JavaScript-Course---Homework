@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 4</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 4.</h1>
+      <p>Наперед задано у скрипті масив зі списком бажань. Після завантаження сторінки випадковим чином вибираються 3 і
+         відображаються у окремих div (їх треба створити і додати на сторінку)
+      </p>
+   </div>
+   <div class="result">
+      <h3>Результат:</h3>
+
+      <div class="text" id="one"></div>
+      <div class="text" id="two"></div>
+      <div class="text" id="three"></div>
+   </div>
+
+   <script>
+      const wishList = ['Перемога', 'Париж', 'Спалена москва', 'Португалія', 'Варшава', 'Вільнюс']
+
+      function getRandom(minValue, maxValue) {
+         return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
+      }
+
+      function getWish(wishList, minValue, maxValue) {
+         document.querySelector('#one').innerHTML = wishList[getRandom(minValue, maxValue)]
+         document.querySelector('#two').innerHTML = wishList[getRandom(minValue, maxValue)]
+         document.querySelector('#three').innerHTML = wishList[getRandom(minValue, maxValue)]
+      }
+      window.onload = function () {
+         document.querySelector('.text').onload = getWish(wishList, 0, 5)
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 3</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 3.</h1>
+      <p>Користувач задає рік народження. Визначити кількість років користувача.
+      </p>
+   </div>
+   <div class="result">
+      <h3>Результат:</h3>
+      <div>
+         <label for="birthYear">
+            Укажіть рік народження користувача
+            <input type="text" id="birthYear" value="0">
+         </label>
+         <div>Вік користувача: <span id="age"> </span></div>
+
+      </div>
+
+   </div>
+   <script>
+      function getUserAge(currentYear) {
+         const userBirthYear = parseInt(document.getElementById('birthYear').value)
+         const userAge = currentYear - userBirthYear
+         document.getElementById('age').innerText = userAge
+      }
+      window.onload = function () {
+         document.querySelector('#birthYear').onchange = getUserAge(2023)
+      }
+
+   </script>
+</body>
+
+</html>

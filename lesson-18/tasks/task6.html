@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/style.css">
+   <title>Task 6</title>
+</head>
+
+<body>
+   <div class="task">
+      <h1>Задача 6.</h1>
+      <p>Користувач задає кількість оцінок і натискає на кнопку «get table». В результаті формується таблиця з input,
+         куди користувач вводить оцінки. Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+      </p>
+      <img src="../img/task6.jpg" alt="task6">
+   </div>
+   <div class="result">
+      <h3>Результат:</h3>
+
+      <div class="container">
+         <div class="grades-qnt">
+            <label for=""><b>Grades number</b>
+               <input type="text" id="grades" value="0">
+            </label>
+         </div>
+         <div class="button">
+            <button>Get table</button>
+         </div>
+         <div class="table">
+         </div>
+         <div>
+            <button class="get-average">Get average</button>
+            <div>Average grades value =
+               <span id="average"></span>
+            </div>
+
+         </div>
+      </div>
+      <script>
+
+         function getTable() {
+            let gradesQnt = document.querySelector('#grades').value
+            for (let i = 0; i < gradesQnt; i++) {
+               let row = document.createElement('input')
+               let r = document.querySelector('.table')
+               r.append(row)
+               row.setAttribute('placeholder', 0)
+               row.setAttribute('id', 'grade-value')
+            }
+         }
+         getTable()
+
+         function getSum() {
+            const grades = document.querySelectorAll('#grade-value')
+            let sum = 0
+            for (const grade of grades) {
+               sum += parseInt(grade.value)
+            }
+            const average = Math.ceil(sum / grades.length)
+            document.getElementById('average').innerHTML = average
+         }
+         window.onload = function () {
+            document.querySelector('.get-average').onclick = getSum
+         }
+      </script>
+   </div>
+</body>
+
+</html>
