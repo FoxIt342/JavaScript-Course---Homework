@@ -34,7 +34,7 @@
          document.getElementById('age').innerText = userAge
       }
       window.onload = function () {
-         document.querySelector('#birthYear').onchange = getUserAge(2023)
+         document.querySelector('#birthYear').onchange = () => getUserAge(2023)
       }
 
    </script>

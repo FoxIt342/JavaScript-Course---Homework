@@ -56,9 +56,8 @@
             </label>
          </div>
          <div class="cost">
-            <label for="total-sum"> Total sum:
-               <input type="text" placeholder="0" id="total-sum">
-            </label>
+            <button type="submit" class="cost-button">Get total sum</button>
+            <input type="text" value="0" id="total-sum">
          </div>
       </div>
       <script>
@@ -72,9 +71,9 @@
          }
          function getGuidePrice() {
             const guidePrices = document.querySelectorAll('.guide-name')
-            let guidePrice
+            let guidePrice = 0
             for (const price of guidePrices) {
-               if (price.checked) guidePrice = parseFloat(price.value)
+               if (price.checked) guidePrice += parseFloat(price.value)
             }
             return guidePrice
          }
@@ -85,12 +84,11 @@
             const totalSum = transportPrice + mealSum + guidePrice
             document.getElementById('total-sum').value = totalSum
          }
-         window.onload = function () {
-            document.querySelector('input').onchange = getTotalSum
-         }
 
+         window.onload = function () {
+            document.querySelector('.cost-button').onclick = getTotalSum
+         }
       </script>
-   </div>
 </body>
 
 </html>

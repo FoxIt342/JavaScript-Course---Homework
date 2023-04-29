@@ -27,6 +27,7 @@
                <button class="convert" id="convert">Конвертувати</button>
             </div>
          </div>
+
          <div class="labels">
             <label for="eur">Сума в євро
                <input type="text" id="eur" value="0">
@@ -42,14 +43,17 @@
 
    <script>
       function converter(usdRate, euroRate) {
-         const uahMoney = parseFloat(document.getElementById("uah").value)
-         document.getElementById("usd").value = (uahMoney / euroRate).toFixed(2)
-         document.getElementById("eur").value = (uahMoney / usdRate).toFixed(2)
+         let uahMoney = parseFloat(document.getElementById('uah').value)
+         let usdMoney = (uahMoney / usdRate)
+         let euroMoney = (uahMoney / euroRate)
+         document.getElementById('usd').value = usdMoney.toFixed(2)
+         document.getElementById('eur').value = euroMoney.toFixed(2)
       }
-         document.querySelector('convert').onclick = converter(38, 40)
-
-
+      window.onload = function () {
+         document.getElementById('convert').onclick = () => converter(38, 40)
+      }
    </script>
+
 </body>
 
 </html>

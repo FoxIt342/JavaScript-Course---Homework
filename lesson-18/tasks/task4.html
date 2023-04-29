@@ -18,10 +18,8 @@
    </div>
    <div class="result">
       <h3>Результат:</h3>
-
-      <div class="text" id="one"></div>
-      <div class="text" id="two"></div>
-      <div class="text" id="three"></div>
+      <div class="container">
+      </div>
    </div>
 
    <script>
@@ -31,13 +29,17 @@
          return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue)
       }
 
-      function getWish(wishList, minValue, maxValue) {
-         document.querySelector('#one').innerHTML = wishList[getRandom(minValue, maxValue)]
-         document.querySelector('#two').innerHTML = wishList[getRandom(minValue, maxValue)]
-         document.querySelector('#three').innerHTML = wishList[getRandom(minValue, maxValue)]
+      function getWish(wishList) {
+         for (let i = 0; i < 3; i++) {
+            let index = getRandom(0, wishList.length - 1)
+            let block = document.createElement('div')
+            block.innerHTML = wishList[index]
+            document.querySelector('.container').append(block)
+            wishList.splice(index, 1)
+         }
       }
       window.onload = function () {
-         document.querySelector('.text').onload = getWish(wishList, 0, 5)
+         document.querySelector('div').onload = getWish(wishList)
       }
    </script>
 </body>
